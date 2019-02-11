@@ -128,10 +128,10 @@ public class ThirdPersonController : MonoBehaviour
             _Rigidbody.velocity += Vector3.up * Physics.gravity.y * (_FallMltiplier - 1) * Time.deltaTime;
         }
 
-        if (_Rigidbody.velocity.y > 1 && JumpPad._IsJumpPadd == false)
-        {
-            _Rigidbody.velocity += Vector3.up * Physics.gravity.y * (_LowJumpModifier - 1) * Time.deltaTime;
-        }
+        //if (_Rigidbody.velocity.y > 1 && JumpPad._IsJumpPadd == false)
+        //{
+        //    _Rigidbody.velocity += Vector3.up * Physics.gravity.y * (_LowJumpModifier - 1) * Time.deltaTime;
+        //}
 
         #endregion Jump
 
@@ -170,7 +170,7 @@ public class ThirdPersonController : MonoBehaviour
 
         }
         _Velocity = new Vector3(Mathf.Clamp(_CamTemp.x * _MoveSpeed * -1, -_MoveSpeed, _MoveSpeed), _CanJump ? _JumpVelocity : _Rigidbody.velocity.y, Mathf.Clamp(_CamTemp.z * _MoveSpeed * -1, -_MoveSpeed, _MoveSpeed));
-        //_Rigidbody.velocity = Vector3.SmoothDamp(_Rigidbody.velocity, _Velocity, ref _MVelocity, _Smoothtime);
+        
         _Rigidbody.velocity = _Velocity;
 
         if (_MoveInput == Vector3.zero)

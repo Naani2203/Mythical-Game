@@ -32,7 +32,7 @@ public class ThirdPersonController : MonoBehaviour
     [Header("Jump")]
     [SerializeField] protected float _JumpVelocity = 7f;
     [SerializeField] protected float _FallMltiplier = 2.5f;
-    [SerializeField] protected float _LowJumpModifier = 2.5f;
+    //[SerializeField] protected float _LowJumpModifier = 2.5f;
     [SerializeField] protected float _Smoothtime = 2.5f;
     protected float _GroundSensorRadius = 0.3f;
     private bool _CanJump = false;

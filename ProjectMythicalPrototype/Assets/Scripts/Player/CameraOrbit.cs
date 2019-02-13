@@ -12,24 +12,43 @@ public class CameraOrbit : MonoBehaviour
     private float _TurnSpeed ;
     [SerializeField]
     private Transform _Player;
+    [SerializeField]
+    private float _ClampValue;
+    private float _StartPos;
 
     private Vector3 _OffsetX;
     private Vector3 _OffsetY;
 
     void Start()
     {
-        _OffsetX = new Vector3(0 , _HeightOffset , _DistanceOffset);
         _OffsetY = new Vector3(0, 0, _DistanceOffset);
+        _OffsetX = new Vector3(0 , _HeightOffset , _DistanceOffset);
+        _StartPos = _OffsetX.y;
+        _ClampValue -= _OffsetX.y;
 
+    }
+    private void Update()
+    {
     }
 
     void LateUpdate()
     {
-      
         _OffsetX = Quaternion.AngleAxis(Input.GetAxis("RHorizontal") * _TurnSpeed, Vector3.up) *_OffsetX ;
-        _OffsetY = Quaternion.AngleAxis(Input.GetAxis("RVertical") * _TurnSpeed, Vector3.right) * _OffsetY;
         transform.position = _Player.position + _OffsetX ;
         transform.LookAt(_Player.position);
+      if(Input.GetAxis("RVertical")>0)
+        {
+            _OffsetX.y = Mathf.Clamp(_OffsetX.y+ _TurnSpeed * Time.deltaTime,_ClampValue, _StartPos); 
+        }
+        if (Input.GetAxis("RVertical") < 0)
+        {
+            _OffsetX.y = Mathf.Clamp(_OffsetX.y - _TurnSpeed * Time.deltaTime, _ClampValue, _StartPos);
+        }
+        if (Input.GetAxis("RVertical") == 0)
+        {
+            _OffsetX.y = Mathf.Lerp(_OffsetX.y,_StartPos,0.050f);
+        }
+
     }
 }
 

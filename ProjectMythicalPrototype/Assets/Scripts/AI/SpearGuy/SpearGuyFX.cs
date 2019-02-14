@@ -22,7 +22,7 @@ public class SpearGuyFX : MonoBehaviour
 
     private void Update()
     {
-        if(Vector3.Distance(transform.position, _Player.transform.position)<20)
+        if(Vector3.Distance(transform.position, _Player.transform.position)<10)
         {
             _CanScreenShake = true;
         }
@@ -34,7 +34,7 @@ public class SpearGuyFX : MonoBehaviour
         if(_CanScreenShake==true)
         {
         Instantiate(_StompParticleFX, _LeftLeg.position, Quaternion.identity);
-        _Camera.CameraShake();
+        _Camera.CameraShake(0.3f, 0.08f);
         
 
         }
@@ -44,7 +44,7 @@ public class SpearGuyFX : MonoBehaviour
         if(_CanScreenShake==true)
         {
         Instantiate(_StompParticleFX, _RightLeg.position, Quaternion.identity);
-        _Camera.CameraShake();
+        _Camera.CameraShake(0.3f, 0.08f);
             
         }
     }

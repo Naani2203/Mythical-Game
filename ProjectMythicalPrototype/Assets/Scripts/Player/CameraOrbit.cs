@@ -29,13 +29,6 @@ public class CameraOrbit : MonoBehaviour
     }
     private void Update()
     {
-    }
-
-    void LateUpdate()
-    {
-        _OffsetX = Quaternion.AngleAxis(Input.GetAxis("RHorizontal") * _TurnSpeed, Vector3.up) *_OffsetX ;
-        transform.position = _Player.position + _OffsetX ;
-        transform.LookAt(_Player.position);
       if(Input.GetAxis("RVertical")>0)
         {
             _OffsetX.y = Mathf.Clamp(_OffsetX.y+ _TurnSpeed * Time.deltaTime,_ClampValue, _StartPos); 
@@ -48,6 +41,13 @@ public class CameraOrbit : MonoBehaviour
         {
             _OffsetX.y = Mathf.Lerp(_OffsetX.y,_StartPos,0.050f);
         }
+    }
+
+    void LateUpdate()
+    {
+        _OffsetX = Quaternion.AngleAxis(Input.GetAxis("RHorizontal") * _TurnSpeed, Vector3.up) *_OffsetX ;
+        transform.position = _Player.position + _OffsetX ;
+        transform.LookAt(_Player.position);
 
     }
 }

@@ -8,23 +8,28 @@ public class CameraShaker : MonoBehaviour
     private Vector3 _Offset;
     private Quaternion _RotationalOffset;
     private bool _IsCameraShake=false;
-    
+    private float _Duration;
+    private float _Magnitude;
+
 
     private void Update()
     {
        if(_IsCameraShake==true)
         {
-            StartCoroutine(CameraShake(0.3f, 0.08f));
+            //StartCoroutine(CameraShake(0.3f, 0.08f));
+            StartCoroutine(CameraShaked(_Duration, _Magnitude));
 
         }
         
     }
-    public void CameraShake()
+    public void CameraShake(float duration,float magnitude)
     {
+        _Duration = duration;
+        _Magnitude = magnitude;
         _IsCameraShake = true;
     }
 
-    public IEnumerator CameraShake(float duration, float magnitude)
+    public IEnumerator CameraShaked(float duration, float magnitude)
     {
         Vector3 _OriginalPos = transform.localPosition;
         Quaternion _OriginalRot = transform.localRotation;

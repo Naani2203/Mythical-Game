@@ -36,6 +36,9 @@ public class PlayerAttack : MonoBehaviour
     private EnemyHealth _Enemy;
 
     [SerializeField]
+    private CameraShaker _Camera;
+
+    [SerializeField]
     private GameObject _Weapon;
 
     private FireProjectile _ProjectileAttack;
@@ -75,6 +78,7 @@ public class PlayerAttack : MonoBehaviour
                     if(hit.collider.gameObject.CompareTag("Enemy"))
                     {
                         Instantiate(_HitImpactParticle, hit.point, Quaternion.identity);
+                        _Camera.CameraShake(0.05f, 0.08f);
                     }
 
                 }

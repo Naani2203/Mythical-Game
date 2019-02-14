@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-
-    public bool _CanDoCloseRange = false;
-
-    private Vector3 _Rotation;
-
+    [Header("Attack Variables")]
+    [SerializeField]
     private float _AttackRange = 3.5f;
+    [SerializeField]
+    private float _ShootDamage = 2;
 
     private int _AttackNumber = 1;
     private float _DamageAmount = 1;
     const float _Attack01Damage = 1;
     const float _Attack02Damage = 2;
     const float _Attack03Damage = 3;
-    const float _ShootDamage = 2;
+    private bool _IsInAttackAnim;
+    private bool _InContact;
 
+    private Animator _Anim;
+    private EnemyHealth _Enemy;
+    private FireProjectile _ProjectileAttack;
+    private GameObject _EnemyInContact;
+
+    [Header("Audio")]
     [SerializeField]
     private AudioSource _Audio;
     [SerializeField]
@@ -31,26 +37,18 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private AudioClip _HitImpact;
 
-    private bool _IsInAttackAnim;
-    private bool _InContact;
-
+    [Header("Projectile Attack")]
     [SerializeField]
     private GameObject _ProjectileWeapon;
     [SerializeField]
     private GameObject _HitImpactParticle;
 
-    private Animator _Anim;
-    private EnemyHealth _Enemy;
 
     [SerializeField]
     private CameraShaker _Camera;
 
     [SerializeField]
     private GameObject _Weapon;
-
-    private GameObject _EnemyInContact;
-
-    private FireProjectile _ProjectileAttack;
 
 
     private void Awake()
@@ -81,15 +79,10 @@ public class PlayerAttack : MonoBehaviour
                 _Audio.clip = _Attack01;
                 _Audio.Play();
 
-                //Ray ray = new Ray(_Weapon.transform.position, _Weapon.transform.forward);
                 RaycastHit hit;
 
                 if (Physics.SphereCast(_Weapon.transform.position, 3, _Weapon.transform.forward, out hit, _AttackRange))
                 {
-                    //if (CanSee(hit.point, hit.transform))
-                    //{
-                    //    Attack(hit.point, hit.transform);
-                    //}
                     if(hit.collider.gameObject.CompareTag("Enemy") )
                     {
                         Attack(hit.point, hit.transform);
@@ -116,20 +109,6 @@ public class PlayerAttack : MonoBehaviour
             }
         }
     }
-
-
-    //private bool CanSee(Vector3 hitPos, Transform who)
-    //{
-    //    Vector3 startPos = _Weapon.transform.position;
-    //    Vector3 dir = hitPos - startPos;
-    //    Ray ray = new Ray(startPos, dir);
-    //    RaycastHit hit;
-    //    if (Physics.Raycast(ray, out hit) && hit.transform == who)
-    //    {
-    //        return true;
-    //    }
-    //    return false;
-    //}
 
     private void Attack(Vector3 hitPos, Transform other)
     {
@@ -172,11 +151,6 @@ public class PlayerAttack : MonoBehaviour
             _InContact = false;
             _EnemyInContact = null;
         }
-    }
-
-    private IEnumerator Delay()
-    {
-        yield return new WaitForSecondsRealtime(1.5f);
     }
 
     private void SetRandomAttack()

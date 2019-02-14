@@ -9,31 +9,25 @@ public class ThirdPersonController : MonoBehaviour
 
     public bool Interact;
 
+    [Header("Audio")]
     [SerializeField]
     private AudioSource _Audio;
     [SerializeField]
-    private AudioClip _HoovesSFX;
-    [SerializeField]
-    private AudioClip _JumpSFX;
-    [SerializeField]
-    private AudioClip _LandSFX;
-    [SerializeField]
     private AudioClip _Phrase01;
 
-
     [Header("Movement")]
-    [SerializeField] protected float _MoveSpeed = 6f;
+    [SerializeField]
+    protected float _MoveSpeed = 6f;
     private Vector3 _MoveInput;
     private Vector3 _RotationalInput;
     private Vector3 _Rotation;
     private Vector3 _MoveForward;
     private Vector3 _MoveSideways;
-    public static bool _CanMove;
+    public static bool CanMove;
 
     [Header("Jump")]
     [SerializeField] protected float _JumpVelocity = 7f;
     [SerializeField] protected float _FallMltiplier = 2.5f;
-    //[SerializeField] protected float _LowJumpModifier = 2.5f;
     [SerializeField] protected float _Smoothtime = 2.5f;
     protected float _GroundSensorRadius = 0.8f;
     private bool _CanJump = false;
@@ -69,58 +63,52 @@ public class ThirdPersonController : MonoBehaviour
         Interact = false;
     }
 
-
     private void Update()
     {
-
+        //-------------------------------- MOVEMENT---------------------------------------------
         _MoveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
         _MoveForward = _MoveInput.x * transform.forward;
         _MoveSideways = _MoveInput.z * transform.right;
         _RotationalInput = new Vector3(Input.GetAxisRaw("RHorizontal"), 0.0f, 0);
 
-
+        //-------------------------------- CAMERA---------------------------------------------
         _CamTemp = _CamTransform.TransformVector(_MoveInput).normalized;
         _CamTemp = new Vector3(_CamTemp.x, 0f, _CamTemp.z);
 
-
+        //-------------------------------- GROUND CHECK---------------------------------------------
         Collider[] contactColliders = Physics.OverlapSphere(GroundSensor.transform.position, _GroundSensorRadius);
-
-
+        //-------------------------------- JUMPPAD ---------------------------------------------
         if (contactColliders.Length > 2 && _IsJumpPad == false)
         {
             _IsGrounded = true;
             _Velocity.y = 0;
-            _CanMove = true;
+            CanMove = true;
             _IsJumping = false;
             JumpPad._IsJumpPadd = false;
         }
         else
         {
             _IsGrounded = false;
-            _CanMove = false;
+            CanMove = false;
         }
 
-
+        //-------------------------------- NO ROTATION ON INTERACT---------------------------------------------
         if (_MoveInput != Vector3.zero && _IsAlive == true && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Interact") == false))
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_CamTemp * -1), 0.15F);
-            _Audio.clip = _HoovesSFX;
-            _Audio.Play();
         }
         else
         {
             transform.Rotate(Vector3.zero);
         }
 
-        #region Jump
 
+        //-------------------------------- JUMP ---------------------------------------------
         if (Input.GetButtonDown("Jump"))
         {
             if (_IsGrounded == true)
             {
                 _CanJump = true;
-                _Audio.clip = _JumpSFX;
-                _Audio.Play();
             }
         }
 
@@ -129,17 +117,13 @@ public class ThirdPersonController : MonoBehaviour
             _Rigidbody.velocity += Vector3.up * Physics.gravity.y * (_FallMltiplier - 1) * Time.deltaTime;
         }
 
-        //if (_Rigidbody.velocity.y > 1 && JumpPad._IsJumpPadd == false)
-        //{
-        //    _Rigidbody.velocity += Vector3.up * Physics.gravity.y * (_LowJumpModifier - 1) * Time.deltaTime;
-        //}
 
-        #endregion Jump
-
+        //-------------------------------- ANIMATION VALUES ---------------------------------------------
         SetAnimValues();
         _IsAlive = _Health.IsAlive;
         _IsHurt = _Health.IsHurt;
 
+        //-------------------------------- INTERACT ---------------------------------------------
         if (Input.GetKeyDown("joystick button 3") == true)
         {
             _Anim.SetTrigger("Interact");
@@ -150,7 +134,7 @@ public class ThirdPersonController : MonoBehaviour
             }
         }
 
-
+        //-------------------------------- NO MOVEMENT ON DEATH OR INTERACT ---------------------------------------------
         if ((_Anim.GetBool("IsAlive") == false && _IsGrounded == true) || (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Interact") == true))
         {
             _Rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
@@ -162,9 +146,9 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
-
     private void FixedUpdate()
     {
+        //-------------------------------- MOVEMENT ---------------------------------------------
         if (_MoveInput != Vector3.zero)
         {
             _Velocity = _CamTemp * _MoveSpeed * -1;
@@ -174,6 +158,7 @@ public class ThirdPersonController : MonoBehaviour
         
         _Rigidbody.velocity = _Velocity;
 
+        //-------------------------------- JUMPING ---------------------------------------------
         if (_MoveInput == Vector3.zero)
         {
             _V = _Rigidbody.velocity;
@@ -201,6 +186,7 @@ public class ThirdPersonController : MonoBehaviour
 
         }
     }
+
     private void SetAnimValues()
     {
         _Anim.SetFloat("SideMovement", _MoveInput.z * _MoveSpeed);
@@ -231,7 +217,6 @@ public class ThirdPersonController : MonoBehaviour
             _IsGrounded = false;
         }
     }
-
 
     private void KnockBack()
     {

@@ -3,7 +3,15 @@ guid: bbd0b2d94ff124f4b92fc8232577dca3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - CheckpointManager: {instanceID: 0}
+  - _Audio: {instanceID: 0}
+  - _Hurt01: {instanceID: 0}
+  - _Hurt02: {instanceID: 0}
+  - _Hurt03: {instanceID: 0}
+  - _DeathSFX: {fileID: 8300000, guid: 842fd78b5d65e4c4cbd5b86cd1ea1a3f, type: 3}
+  - _GameOverScreen: {instanceID: 0}
+  - _PlayerHealthBar: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

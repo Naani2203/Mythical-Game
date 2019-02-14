@@ -60,26 +60,29 @@ public class ActorHealth : MonoBehaviour
         PlayerCurrentHealth -= damageAmount;
         Debug.Log(gameObject.name + " takes " + damageAmount + " damage.");
         if (CurrentHealth <= 0f) Death();
-        IsHurt = true;
-        _Audio.clip = _Hurt01;
-        _Audio.Play();
+        else
+        {
+            IsHurt = true;
+            _Audio.clip = _Hurt01;
+            _Audio.Play();
+        }
     }
 
     public void Death()
     {
+        _Audio.PlayOneShot(_DeathSFX, 0.7F);
         IsAlive = false;
-        _Audio.clip = _DeathSFX;
-        _Audio.Play();
         StartCoroutine(WaitForAnim());
     }
 
     public void ImmidiateDeath()
     {
-        IsAlive = false;
         _Audio.clip = _DeathSFX;
         _Audio.Play();
+        IsAlive = false;
         _GameOverScreen.SetActive(true);
     }
+    
 
     private IEnumerator WaitForAnim()
     {

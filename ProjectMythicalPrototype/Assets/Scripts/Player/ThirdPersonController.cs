@@ -20,6 +20,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField]
     private AudioClip _Phrase01;
 
+
     [Header("Movement")]
     [SerializeField] protected float _MoveSpeed = 6f;
     private Vector3 _MoveInput;

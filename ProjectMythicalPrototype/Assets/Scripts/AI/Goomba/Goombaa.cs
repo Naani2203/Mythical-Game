@@ -18,12 +18,17 @@ public class Goombaa : MonoBehaviour
     private GameObject _HealthBar;
     [SerializeField]
     private GameObject _GrootParts;
+    private AudioSource _Audio;
+    [SerializeField]
+    private AudioClip _DeathSound;
+  
+    public AudioClip AggroSound;
 
     void Start()
     {
         _Player = GameObject.Find("Player").transform;
         _Health = GetComponent<EnemyHealth>();
-
+        _Audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -33,6 +38,7 @@ public class Goombaa : MonoBehaviour
             anim.SetBool("isPatrol", true);
             anim.SetBool("isFollow", false);
             _HealthBar.SetActive(false);
+
         }
         if (Vector3.Distance(_Player.position, transform.position) <= enemyRange )
         {
@@ -55,6 +61,8 @@ public class Goombaa : MonoBehaviour
         }
         if(_Health.CurrentHealth==0)
         {
+            _Audio.clip = _DeathSound;
+            _Audio.Play();
             Instantiate(_GrootParts, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

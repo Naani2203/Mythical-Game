@@ -6,10 +6,15 @@ using UnityEngine.UI;
 
 public class ActorHealth : MonoBehaviour
 {
-
-    private GameObject _Manager;
     public CheckpointManager CheckpointManager;
+    private GameObject _Manager;
 
+    [SerializeField]
+    private GameObject _GameOverScreen;
+  
+
+    //------------------------------------- AUDIO ------------------------------------
+    [Header("Audio")]
     [SerializeField]
     private AudioSource _Audio;
     [SerializeField]
@@ -21,25 +26,16 @@ public class ActorHealth : MonoBehaviour
     [SerializeField]
     private AudioClip _DeathSFX;
 
-    [SerializeField]
-    private GameObject _GameOverScreen;
-    [SerializeField]
-    private Image _PlayerHealthBar;
-
+    //------------------------------------- HEALTH ------------------------------------
     [Header("Health")]
     [SerializeField] public float MaxHealth = 100.0f;
     public static float PlayerCurrentHealth = 100.0f;
+    [SerializeField]
+    private Image _PlayerHealthBar;
 
-    //Animation values
+    //------------------------------------- ANIMATION VALUES ---------------------------
     public bool IsAlive;
     public bool IsHurt;
-
-
-    public float CurrentHealth
-    {
-        get { return PlayerCurrentHealth; }
-        set { PlayerCurrentHealth = Mathf.Clamp(value, 0f, MaxHealth); }
-    }
 
     protected void Start()
     {
@@ -52,6 +48,24 @@ public class ActorHealth : MonoBehaviour
     private void Update()
     {
         _PlayerHealthBar.fillAmount = PlayerCurrentHealth / MaxHealth;
+    }
+
+    public float CurrentHealth
+    {
+        get { return PlayerCurrentHealth; }
+        set { PlayerCurrentHealth = Mathf.Clamp(value, 0f, MaxHealth); }
+    }
+
+    //-------------------------------- HEALTH PICKUP --------------------------------
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Health")
+        {
+            if (CurrentHealth >= 85)
+                CurrentHealth = MaxHealth;
+            else
+                CurrentHealth += 15;
+        }
     }
 
     //-------------------------------- ACTOR DAMAGED & DEATH --------------------------------
@@ -88,17 +102,5 @@ public class ActorHealth : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(3f);
         _GameOverScreen.SetActive(true);
-    }
-
-    //-------------------------------- HEALTH PICKUP --------------------------------
-    private void OnTriggerEnter(Collider other)
-    {
-        if ( other.tag == "Health" )
-        {
-            if (CurrentHealth >= 85)
-                CurrentHealth = MaxHealth;
-            else
-                CurrentHealth += 15;
-        }
     }
 }

@@ -948,7 +948,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1681260076432484}
   m_LocalRotation: {x: -0.37754557, y: 0.37636077, z: -0.1715087, w: 0.8284906}
-  m_LocalPosition: {x: -91.52815, y: 18.971273, z: 40.468693}
+  m_LocalPosition: {x: -95.47287, y: -94.30406, z: 32.818787}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4907919079548244}
@@ -1391,7 +1391,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1576,6 +1576,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   anim: {fileID: 95480522314311404}
   NavMeshAgent: {fileID: 195761088951375952}
   enemyRange: 8
@@ -1583,7 +1585,6 @@ MonoBehaviour:
   _HealthBar: {fileID: 1011400173632532}
   _GrootParts: {fileID: 1914677747791018, guid: 6539746c430d0fc4ba65f395eb1d9ba5,
     type: 2}
-  _DeathSound: {fileID: 8300000, guid: 018c7af9c3592bc4294f91c21782617d, type: 3}
   AggroSound: {fileID: 8300000, guid: 7107b58507f0e404d9187b47297b4c14, type: 3}
 --- !u!114 &114503148480147150
 MonoBehaviour:

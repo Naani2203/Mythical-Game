@@ -19,8 +19,7 @@ public class Goombaa : MonoBehaviour
     [SerializeField]
     private GameObject _GrootParts;
     private AudioSource _Audio;
-    [SerializeField]
-    private AudioClip _DeathSound;
+    
   
     public AudioClip AggroSound;
 
@@ -61,8 +60,7 @@ public class Goombaa : MonoBehaviour
         }
         if(_Health.CurrentHealth==0)
         {
-            _Audio.clip = _DeathSound;
-            _Audio.Play();
+            
             Instantiate(_GrootParts, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

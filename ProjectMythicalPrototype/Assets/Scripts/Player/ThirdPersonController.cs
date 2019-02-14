@@ -34,7 +34,7 @@ public class ThirdPersonController : MonoBehaviour
     [SerializeField] protected float _FallMltiplier = 2.5f;
     //[SerializeField] protected float _LowJumpModifier = 2.5f;
     [SerializeField] protected float _Smoothtime = 2.5f;
-    protected float _GroundSensorRadius = 0.3f;
+    protected float _GroundSensorRadius = 0.8f;
     private bool _CanJump = false;
     private bool _IsGrounded;
     private bool _IsJumping;

@@ -22,6 +22,7 @@ public class FireProjectile : MonoBehaviour
         _Rigidbody = GetComponentInParent<Rigidbody>();
         _Collider = GetComponentInParent<CapsuleCollider>();
         _Audio = GetComponentInParent<AudioSource>();
+
     }
 
     public void Fire()

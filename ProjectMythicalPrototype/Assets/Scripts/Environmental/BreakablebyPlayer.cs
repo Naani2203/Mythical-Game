@@ -11,14 +11,17 @@ public class BreakablebyPlayer : MonoBehaviour
     [SerializeField]
     private GameObject _BrokenObject;
     private Rigidbody _Rb;
+    private AudioSource _Audio;
     private void Awake()
     {
+        _Audio = GetComponent<AudioSource>();
         _Rb = GetComponent<Rigidbody>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            _Audio.Play();
             _OriginalObject.SetActive(false);
             _BrokenObject.SetActive(true);
 

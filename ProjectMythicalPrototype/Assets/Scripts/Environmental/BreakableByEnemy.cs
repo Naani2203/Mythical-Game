@@ -9,9 +9,11 @@ public class BreakableByEnemy : MonoBehaviour
     [SerializeField]
     private GameObject _BrokenObject;
     private Rigidbody _Rb;
+    private AudioSource _Audio;
     private void Awake()
     {
         _Rb = GetComponent<Rigidbody>();
+        _Audio = GetComponent<AudioSource>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -19,6 +21,7 @@ public class BreakableByEnemy : MonoBehaviour
         {
             _OriginalObject.SetActive(false);
             _BrokenObject.SetActive(true);
+            _Audio.Play();
             
         }
     }

@@ -28,6 +28,8 @@ public class PlayerAttack : MonoBehaviour
     private AudioClip _AttackOgre;
     [SerializeField]
     private AudioClip _Shoot;
+    [SerializeField]
+    private AudioClip _HitImpact;
 
     private bool _IsInAttackAnim;
     private bool _InContact;
@@ -143,6 +145,8 @@ public class PlayerAttack : MonoBehaviour
         var otherUnit = other.GetComponent<EnemyHealth>();
         if (otherUnit != null)
         {
+            _Audio.clip = _HitImpact;
+            _Audio.Play();
             otherUnit.Damage(_DamageAmount);
         }
     }

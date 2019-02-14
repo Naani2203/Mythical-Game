@@ -194,8 +194,8 @@ public class ThirdPersonController : MonoBehaviour
 
         if (_CanJump == true && JumpPad._IsJumpPadd == false)
         {
-            //_Rigidbody.velocity = new Vector3(_Rigidbody.velocity.x, _JumpVelocity, _Rigidbody.velocity.z);
-            // _Velocity.y = _JumpVelocity;
+            _Rigidbody.velocity = new Vector3(_Rigidbody.velocity.x, _JumpVelocity, _Rigidbody.velocity.z);
+            _Velocity.y = _JumpVelocity;
             _CanJump = false;
             _IsJumping = true;
 

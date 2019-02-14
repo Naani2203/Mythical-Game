@@ -19,8 +19,7 @@ public class Goombaa : MonoBehaviour
     [SerializeField]
     private GameObject _GrootParts;
     private AudioSource _Audio;
-    
-  
+
     public AudioClip AggroSound;
 
     void Start()

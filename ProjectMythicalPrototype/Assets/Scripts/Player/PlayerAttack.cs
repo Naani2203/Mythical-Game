@@ -32,6 +32,7 @@ public class PlayerAttack : MonoBehaviour
     private GameObject _ProjectileWeapon;
     [SerializeField]
     private GameObject _HitImpactParticle;
+
     private Animator _Anim;
     private EnemyHealth _Enemy;
 
@@ -42,6 +43,7 @@ public class PlayerAttack : MonoBehaviour
     private GameObject _Weapon;
 
     private FireProjectile _ProjectileAttack;
+
 
     private void Awake()
     {
@@ -93,7 +95,7 @@ public class PlayerAttack : MonoBehaviour
                 _Audio.clip = _Shoot;
                 _Audio.Play();
                 _DamageAmount = _ShootDamage;
-                //_ProjectileAttack.Fire();
+                _ProjectileAttack.Fire();
             }
         }
     }

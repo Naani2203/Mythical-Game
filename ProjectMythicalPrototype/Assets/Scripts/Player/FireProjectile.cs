@@ -12,13 +12,16 @@ public class FireProjectile : MonoBehaviour
     private Rigidbody _Rigidbody;
     private CapsuleCollider _Collider;
 
-    //private AudioSource _Audio;
+    private AudioSource _Audio;
+
+    [SerializeField]
+    private GameObject _ProjectileParticle;
 
     private void Start()
     {
         _Rigidbody = GetComponentInParent<Rigidbody>();
         _Collider = GetComponentInParent<CapsuleCollider>();
-        //_Audio = GetComponent<AudioSource>();
+        _Audio = GetComponent<AudioSource>();
     }
 
     public void Fire()
@@ -26,7 +29,9 @@ public class FireProjectile : MonoBehaviour
         Projectile spawnedProjectile = Instantiate(_Projectile, transform.position, transform.rotation);
         spawnedProjectile.Shoot(_Rigidbody.velocity, _Collider);
 
-        //_Audio.Play();
+        Instantiate(_ProjectileParticle, spawnedProjectile.transform.position, Quaternion.identity);
+
+        _Audio.Play();
     }
 }
 

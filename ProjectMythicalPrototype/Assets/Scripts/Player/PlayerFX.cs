@@ -15,21 +15,21 @@ public class PlayerFX : MonoBehaviour
     [SerializeField]
     private CameraShaker _Camera;
     [SerializeField]
-    private AudioSource _Audio;
-    [SerializeField]
-    private AudioClip _FaunLand;
-    [SerializeField]
-    private AudioClip _FaunFootStepsLeft;
-    [SerializeField]
-    private AudioClip _FaunFootStepsRight;
+    //private AudioSource _Audio;
+    //[SerializeField]
+    //private AudioClip _FaunLand;
+    //[SerializeField]
+    //private AudioClip _FaunFootStepsLeft;
+    //[SerializeField]
+    //private AudioClip _FaunFootStepsRight;
 
 
     public void SpawnParticleAtJumpAndLand()
     {
         Instantiate(_ParticleEffect, _Leg1.position, Quaternion.identity);
         _Camera.CameraShake(0.1f,0.08f);
-        _Audio.clip = _FaunLand;
-        _Audio.Play();
+        //_Audio.clip = _FaunLand;
+        //_Audio.Play();
 
     }
     public void SpawnParticleAtSmash()
@@ -40,12 +40,12 @@ public class PlayerFX : MonoBehaviour
     }
     public void PLaySoundAtLeftFoot()
     {
-        _Audio.clip = _FaunFootStepsLeft;
-        _Audio.Play();
+        //_Audio.clip = _FaunFootStepsLeft;
+        //_Audio.Play();
     }
     public void PLaySoundAtRightFoot()
     {
-        _Audio.clip = _FaunFootStepsRight;
-        _Audio.Play();
+        //_Audio.clip = _FaunFootStepsRight;
+        //_Audio.Play();
     }
 }

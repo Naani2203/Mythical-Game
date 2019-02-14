@@ -22,6 +22,8 @@ public class PlayerFX : MonoBehaviour
     private AudioClip _FaunFootStepsLeft;
     [SerializeField]
     private AudioClip _FaunFootStepsRight;
+    [SerializeField]
+    private AudioClip _InteractSound;
 
 
     public void SpawnParticleAtJumpAndLand()
@@ -36,6 +38,8 @@ public class PlayerFX : MonoBehaviour
     {
         Instantiate(_CircleEffect, _StompPos.position, Quaternion.identity);
         _Camera.CameraShake(0.1f, 0.08f);
+        _Audio.clip = _InteractSound;
+        _Audio.Play();
 
     }
     public void PLaySoundAtLeftFoot()

@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 4036376139217158}
   - component: {fileID: 198843711250628982}
   - component: {fileID: 199436632795617804}
+  - component: {fileID: 114554796976299804}
   m_Layer: 0
   m_Name: Slash_Attack2_FX
   m_TagString: Untagged
@@ -197,6 +198,18 @@ MonoBehaviour:
   showAdditionalSettings: 0
   displayLightIntensity: 66.34
   displayAreaLightEmissiveMesh: 0
+--- !u!114 &114554796976299804
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1469727514655426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d5149531c33864b9e8690a1f171cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DestroyTime: 3.5
 --- !u!114 &114739618244099836
 MonoBehaviour:
   m_ObjectHideFlags: 1

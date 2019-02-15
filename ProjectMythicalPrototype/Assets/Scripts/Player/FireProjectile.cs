@@ -5,23 +5,22 @@ using UnityEngine;
 public class FireProjectile : MonoBehaviour
 {
     [SerializeField]
+    private GameObject _ProjectileParticle;
+    [SerializeField]
     private Projectile _Projectile;
 
     private bool _WantsToFire;
 
     private Rigidbody _Rigidbody;
     private CapsuleCollider _Collider;
-
     private AudioSource _Audio;
-
-    [SerializeField]
-    private GameObject _ProjectileParticle;
 
     private void Start()
     {
         _Rigidbody = GetComponentInParent<Rigidbody>();
         _Collider = GetComponentInParent<CapsuleCollider>();
         _Audio = GetComponentInParent<AudioSource>();
+
     }
 
     public void Fire()

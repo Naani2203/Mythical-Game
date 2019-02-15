@@ -21,6 +21,8 @@ public class Spearguy : MonoBehaviour
     public AudioClip Scream;
     [SerializeField]
     private AudioClip _DeadClip;
+    [SerializeField]
+    private GameObject _HealthBar;
 
    
     void Start()
@@ -54,6 +56,8 @@ public class Spearguy : MonoBehaviour
             _AudioSource.clip = _DeadClip;
             _AudioSource.Play();
             anim.SetTrigger("Dead");
+            Destroy(gameObject.GetComponent<CapsuleCollider>());
+            Destroy(_HealthBar);
             Destroy(gameObject, 10f);
             _IsDeathAnim = true;
         }

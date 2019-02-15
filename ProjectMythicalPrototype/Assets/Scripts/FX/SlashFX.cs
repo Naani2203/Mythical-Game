@@ -30,7 +30,7 @@ public class SlashFX : MonoBehaviour
     }
     public void SpawnSlashFX3()
     {
-        Instantiate(_SlashEffect3, _AttackPos3.position, transform.localRotation);
+        //Instantiate(_SlashEffect3, _AttackPos3.position, transform.localRotation);
     }
 
 }

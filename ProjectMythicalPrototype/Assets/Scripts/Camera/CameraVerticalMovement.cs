@@ -18,7 +18,7 @@ public class CameraVerticalMovement : MonoBehaviour
     {
 	    if(Input.GetAxis("RVertical")!=0)
         {
-            transform.Translate(0,_LookSpeed * Time.deltaTime,0);
+            transform.Translate(0,_LookSpeed ,0);
         }
         Mathf.Clamp(transform.position.y, _StartPos, _ClampValue);
 	}

@@ -31,11 +31,11 @@ public class CameraOrbit : MonoBehaviour
     {
       if(Input.GetAxis("RVertical")>0)
         {
-            _OffsetX.y = Mathf.Clamp(_OffsetX.y+ _TurnSpeed * Time.deltaTime,_ClampValue, _StartPos); 
+            _OffsetX.y = Mathf.Clamp(_OffsetX.y+ _TurnSpeed*Time.deltaTime ,_ClampValue, _StartPos); 
         }
         if (Input.GetAxis("RVertical") < 0)
         {
-            _OffsetX.y = Mathf.Clamp(_OffsetX.y - _TurnSpeed * Time.deltaTime, _ClampValue, _StartPos);
+            _OffsetX.y = Mathf.Clamp(_OffsetX.y - _TurnSpeed*Time.deltaTime , _ClampValue, _StartPos);
         }
         if (Input.GetAxis("RVertical") == 0)
         {

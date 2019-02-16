@@ -19,6 +19,7 @@ TagManager:
   - CameraShake
   - Altar
   - Health
+  - Projectile
   layers:
   - Default
   - TransparentFX

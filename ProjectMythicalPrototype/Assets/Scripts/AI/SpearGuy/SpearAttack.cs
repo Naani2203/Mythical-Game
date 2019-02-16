@@ -16,6 +16,7 @@ public class SpearAttack : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        SlowMoController._IsAttackSloMo = true;
         _Target = animator.gameObject.GetComponent<Spearguy>().target;
         _Speed = animator.gameObject.GetComponent<Spearguy>().dashSpeed;
         _Target-= (Vector3.back*attackOffset);
@@ -48,7 +49,7 @@ public class SpearAttack : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        SlowMoController._IsAttackSloMo = false;
         _Navmeshagent.speed = _Temp;
        
     }

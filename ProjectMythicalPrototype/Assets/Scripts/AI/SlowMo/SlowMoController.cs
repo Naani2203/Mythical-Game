@@ -15,6 +15,7 @@ public class SlowMoController : MonoBehaviour
     [SerializeField]
     private float _SlowMoCoolDown = 4f;
     private float _Delay=0;
+    public static bool _IsAttackSloMo;
 
 
     private bool _CanSlowMo = false;
@@ -33,7 +34,7 @@ public class SlowMoController : MonoBehaviour
 
     private void StartSlowMo()
     {
-        if (_CanSlowMo==true && _SlowMoCD==false)
+        if (_CanSlowMo==true && _SlowMoCD==false && _IsAttackSloMo==true)
         {
             Time.timeScale = _SlowMoAmount;
             _SlowMoCD = true;
@@ -49,7 +50,7 @@ public class SlowMoController : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(_SlowMoCD);
+      
         if(_SlowMoCD==true)
         {
             _Delay += Time.deltaTime;

@@ -18,12 +18,20 @@ public class Projectile : MonoBehaviour {
     [SerializeField] protected float _Radius = 2.5f;
     [SerializeField] protected float _KnockBack = 5f;
 
+    [SerializeField]
+    private GameObject _ProjectileParticle;
+    private GameObject _Particle;
+
     private Rigidbody _Rigidbody;
     private SphereCollider _Collider;
 
+
     public void Shoot(Vector3 initialVelocity, Collider collider)
     {
+        _Particle = Instantiate(_ProjectileParticle, gameObject.transform.position, Quaternion.identity);
+
         Destroy(gameObject, _LifeTime);
+        Destroy(_Particle.gameObject, _LifeTime);
 
         _Rigidbody = GetComponent<Rigidbody>();
         _Rigidbody.velocity = transform.forward * _Velocity + initialVelocity;
@@ -31,6 +39,8 @@ public class Projectile : MonoBehaviour {
         _Collider = GetComponent<SphereCollider>();
 
         Physics.IgnoreCollision(_Collider, collider, true);
+
+        
     }
 
     private void Update()
@@ -38,6 +48,12 @@ public class Projectile : MonoBehaviour {
         transform.rotation = Quaternion.Lerp(transform.rotation,
                              Quaternion.LookRotation(_Rigidbody.velocity.normalized),
                              Time.deltaTime * RotationLerpSpeed);
+
+        _Particle.transform.rotation = Quaternion.Lerp(transform.rotation,
+                           Quaternion.LookRotation(_Rigidbody.velocity.normalized),
+                           Time.deltaTime * RotationLerpSpeed);
+
+        _Particle.transform.position = gameObject.transform.position;
     }
 
     protected void OnCollisionEnter(Collision collision)

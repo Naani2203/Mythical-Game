@@ -49,13 +49,14 @@ public class SlowMoController : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(_SlowMoCD);
         if(_SlowMoCD==true)
         {
             _Delay += Time.deltaTime;
             if(_Delay>=_SlowMoCoolDown)
             {
-                _Delay = 0;
                 _SlowMoCD = false;
+                _Delay = 0;
             }
         }
         

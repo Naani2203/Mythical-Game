@@ -126,7 +126,8 @@ public class ThirdPersonController : MonoBehaviour
             }
         }
 
-        if (_MoveInput != Vector3.zero && _IsAlive == true && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Interact") == false)
+        if (_IsAlive == true
+            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Interact") == false)
             && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("ProjectileAttack") == false)
             && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") == false)
             && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") == false)
@@ -141,15 +142,23 @@ public class ThirdPersonController : MonoBehaviour
         }
 
         //-------------------------------- NO ROTATION AND MOVEMENT ON ACTIONS---------------------------------------------
-        if (_CanMove)
+        if (_CanMove && _MoveInput != Vector3.zero)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_CamTemp * -1), 0.15F);
+        }
+        else
+        {
+            transform.Rotate(Vector3.zero);
+        }
+
+        //-------------------------------- NO MOVEMENT ON DEATH OR INTERACT ---------------------------------------------
+        if (_CanMove)
+        {
             _Rigidbody.constraints &= ~RigidbodyConstraints.FreezePosition;
             _Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
         else
         {
-            transform.Rotate(Vector3.zero);
             _Rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
     }

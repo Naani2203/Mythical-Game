@@ -5,11 +5,7 @@ using UnityEngine;
 public class FireProjectile : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _ProjectileParticle;
-    [SerializeField]
     private Projectile _Projectile;
-
-    private bool _WantsToFire;
 
     private Rigidbody _Rigidbody;
     private CapsuleCollider _Collider;
@@ -27,8 +23,6 @@ public class FireProjectile : MonoBehaviour
     {
         Projectile spawnedProjectile = Instantiate(_Projectile, transform.position, transform.rotation);
         spawnedProjectile.Shoot(_Rigidbody.velocity, _Collider);
-
-        Instantiate(_ProjectileParticle, spawnedProjectile.transform.position, Quaternion.identity);
 
         _Audio.Play();
     }

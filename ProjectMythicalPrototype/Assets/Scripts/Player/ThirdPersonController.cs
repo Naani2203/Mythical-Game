@@ -23,7 +23,9 @@ public class ThirdPersonController : MonoBehaviour
     private Vector3 _Rotation;
     private Vector3 _MoveForward;
     private Vector3 _MoveSideways;
-    public static bool CanMove;
+    private bool _CanMove;
+    public static bool CanMoveJumpPad;
+
 
     [Header("Jump")]
     [SerializeField] protected float _JumpVelocity = 7f;
@@ -61,6 +63,7 @@ public class ThirdPersonController : MonoBehaviour
         _Audio.clip = _Phrase01;
         _Audio.Play();
         Interact = false;
+        _CanMove = true;
     }
 
     private void Update()
@@ -82,26 +85,15 @@ public class ThirdPersonController : MonoBehaviour
         {
             _IsGrounded = true;
             _Velocity.y = 0;
-            CanMove = true;
+            CanMoveJumpPad = true;
             _IsJumping = false;
             JumpPad._IsJumpPadd = false;
         }
         else
         {
             _IsGrounded = false;
-            CanMove = false;
+            CanMoveJumpPad = false;
         }
-
-        //-------------------------------- NO ROTATION ON INTERACT---------------------------------------------
-        if (_MoveInput != Vector3.zero && _IsAlive == true && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Interact") == false))
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_CamTemp * -1), 0.15F);
-        }
-        else
-        {
-            transform.Rotate(Vector3.zero);
-        }
-
 
         //-------------------------------- JUMP ---------------------------------------------
         if (Input.GetButtonDown("Jump"))
@@ -134,15 +126,31 @@ public class ThirdPersonController : MonoBehaviour
             }
         }
 
-        //-------------------------------- NO MOVEMENT ON DEATH OR INTERACT ---------------------------------------------
-        if ((_Anim.GetBool("IsAlive") == false && _IsGrounded == true) || (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Interact") == true))
+        if (_MoveInput != Vector3.zero && _IsAlive == true && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Interact") == false)
+            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("ProjectileAttack") == false)
+            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") == false)
+            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") == false)
+            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack03") == false)
+            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Hurt") == false))
         {
-            _Rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+            _CanMove = true;
         }
         else
         {
+            _CanMove = false;
+        }
+
+        //-------------------------------- NO ROTATION AND MOVEMENT ON ACTIONS---------------------------------------------
+        if (_CanMove)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_CamTemp * -1), 0.15F);
             _Rigidbody.constraints &= ~RigidbodyConstraints.FreezePosition;
             _Rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+        else
+        {
+            transform.Rotate(Vector3.zero);
+            _Rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
     }
 
@@ -155,7 +163,7 @@ public class ThirdPersonController : MonoBehaviour
 
         }
         _Velocity = new Vector3(Mathf.Clamp(_CamTemp.x * _MoveSpeed * -1, -_MoveSpeed, _MoveSpeed), _CanJump ? _JumpVelocity : _Rigidbody.velocity.y, Mathf.Clamp(_CamTemp.z * _MoveSpeed * -1, -_MoveSpeed, _MoveSpeed));
-        
+
         _Rigidbody.velocity = _Velocity;
 
         //-------------------------------- JUMPING ---------------------------------------------
@@ -187,13 +195,14 @@ public class ThirdPersonController : MonoBehaviour
         }
     }
 
+
+    //-------------------------------- ANIMATION VALUES ---------------------------------------------
     private void SetAnimValues()
     {
         _Anim.SetFloat("SideMovement", _MoveInput.z * _MoveSpeed);
         _Anim.SetFloat("ForwardMovement", _MoveInput.x * _MoveSpeed);
         _Anim.SetFloat("SpeedMult", _MoveSpeed);
         _Anim.SetBool("IsAlive", _IsAlive);
-
         _Anim.SetBool("IsGrounded", _IsGrounded);
         _Anim.SetFloat("Velocity", _Velocity.y);
     }

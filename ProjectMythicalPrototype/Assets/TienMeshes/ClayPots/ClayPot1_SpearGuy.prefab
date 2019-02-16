@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16882b70cabf8494f88da61ae038597b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _OriginalObject: {fileID: 0}
+  _OriginalObject: {fileID: 1652063685693024}
   _BrokenObject: {fileID: 1922469267459524}
 --- !u!135 &135535857669595144
 SphereCollider:

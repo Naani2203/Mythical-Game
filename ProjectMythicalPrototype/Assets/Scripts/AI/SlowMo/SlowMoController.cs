@@ -50,7 +50,7 @@ public class SlowMoController : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(_SlowMoCD);
+      
         if(_SlowMoCD==true)
         {
             _Delay += Time.deltaTime;

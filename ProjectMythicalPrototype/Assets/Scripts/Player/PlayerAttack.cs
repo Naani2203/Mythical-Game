@@ -60,7 +60,10 @@ public class PlayerAttack : MonoBehaviour
     private void Update()
     {
 
-        if (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") == false && _Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") == false && _Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack03") == false)
+        if (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") == false 
+            && _Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") == false
+            && _Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack03") == false
+            && _Anim.GetCurrentAnimatorStateInfo(0).IsName("ProjectileAttack") == false)
         {
             _IsInAttackAnim = false;
         }
@@ -99,7 +102,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyDown("joystick button 4"))
         {
-            if (_Anim.GetCurrentAnimatorStateInfo(0).IsName("ProjectileAttack") == false)
+            if ( _IsInAttackAnim == false)
             {
                 _Anim.SetTrigger("Fire");
                 _Audio.clip = _Shoot;

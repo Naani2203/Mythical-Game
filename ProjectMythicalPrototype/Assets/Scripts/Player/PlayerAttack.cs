@@ -17,11 +17,15 @@ public class PlayerAttack : MonoBehaviour
     const float _Attack03Damage = 3;
     private bool _IsInAttackAnim;
     private bool _InContact;
+    private bool _OnContactPot;
 
     private Animator _Anim;
     private EnemyHealth _Enemy;
     private FireProjectile _ProjectileAttack;
     private GameObject _EnemyInContact;
+    private GameObject _PotOnContact;
+
+    private BreakablebyPlayer _Breakable;
 
     [Header("Audio")]
     [SerializeField]
@@ -60,7 +64,7 @@ public class PlayerAttack : MonoBehaviour
     private void Update()
     {
 
-        if (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") == false 
+        if (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") == false
             && _Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") == false
             && _Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack03") == false
             && _Anim.GetCurrentAnimatorStateInfo(0).IsName("ProjectileAttack") == false)
@@ -86,23 +90,33 @@ public class PlayerAttack : MonoBehaviour
 
                 if (Physics.SphereCast(_Weapon.transform.position, 3, _Weapon.transform.forward, out hit, _AttackRange))
                 {
-                    if(hit.collider.gameObject.CompareTag("Enemy") )
+                    if (hit.collider.gameObject.CompareTag("Enemy"))
                     {
                         Attack(hit.point, hit.transform);
                         Instantiate(_HitImpactParticle, hit.point, Quaternion.identity);
                         _Camera.CameraShake(0.05f, 0.08f);
+                    }
+                    if (hit.collider.gameObject.CompareTag("Pot"))
+                    {
+                        var pot = hit.collider.GetComponent<BreakablebyPlayer>();
+                        pot.Break();
                     }
                 }
                 if (_InContact == true)
                 {
                     AttackOnContact(_EnemyInContact);
                 }
+                if (_OnContactPot == true)
+                {
+                    BreakObject(_PotOnContact);
+                }
+
             }
         }
 
         if (Input.GetKeyDown("joystick button 4"))
         {
-            if ( _IsInAttackAnim == false)
+            if (_IsInAttackAnim == false)
             {
                 _Anim.SetTrigger("Fire");
                 _Audio.clip = _Shoot;
@@ -133,6 +147,15 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    public void BreakObject(GameObject other)
+    {
+        var breakable = other.GetComponent<BreakablebyPlayer>();
+        if (breakable != null)
+        {
+            breakable.Break();
+        }
+    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
@@ -140,10 +163,17 @@ public class PlayerAttack : MonoBehaviour
             _InContact = true;
             _EnemyInContact = other.gameObject;
         }
+        else if (other.gameObject.tag == "Pot")
+        {
+            _OnContactPot = true;
+            _PotOnContact = other.gameObject;
+        }
         else
         {
             _InContact = false;
+            _OnContactPot = false;
             _EnemyInContact = null;
+            _PotOnContact = null;
         }
     }
 

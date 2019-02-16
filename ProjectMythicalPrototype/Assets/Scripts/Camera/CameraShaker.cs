@@ -10,15 +10,25 @@ public class CameraShaker : MonoBehaviour
     private bool _IsCameraShake=false;
     private float _Duration;
     private float _Magnitude;
+    private Vector3 _InitialPosition;
 
+    private void Start()
+    {
+        _InitialPosition = transform.localPosition;
+    }
 
     private void Update()
     {
+      
        if(_IsCameraShake==true)
         {
             //StartCoroutine(CameraShake(0.3f, 0.08f));
             StartCoroutine(CameraShaked(_Duration, _Magnitude));
 
+        }
+        else
+        {
+            transform.localPosition = _InitialPosition;
         }
         
     }

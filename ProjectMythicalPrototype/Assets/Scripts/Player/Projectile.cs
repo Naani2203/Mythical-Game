@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour {
     [Header("Damage")]
     [SerializeField] protected float _Damage = 10f;
     [SerializeField] protected float _Radius = 2.5f;
-    [SerializeField] protected float _KnockBack = 5f;
+    [SerializeField] protected float _KnockBack = 20f;
 
     [SerializeField]
     private GameObject _ProjectileParticle;
@@ -38,6 +38,7 @@ public class Projectile : MonoBehaviour {
 
         _Collider = GetComponent<SphereCollider>();
 
+        _Rigidbody.useGravity = false;
         Physics.IgnoreCollision(_Collider, collider, true);
 
         

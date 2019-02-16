@@ -131,8 +131,7 @@ public class ThirdPersonController : MonoBehaviour
             && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("ProjectileAttack") == false)
             && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") == false)
             && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") == false)
-            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack03") == false)
-            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Hurt") == false))
+            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack03") == false))
         {
             _CanMove = true;
         }

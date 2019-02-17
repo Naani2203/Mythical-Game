@@ -8,13 +8,16 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float _AttackRange = 3.5f;
     [SerializeField]
-    private float _ShootDamage = 2;
+    private float _ShootDamage = 2f;
+    [SerializeField]
+    private float _KnockBackEnemy = 20f;
 
     private int _AttackNumber = 1;
     private float _DamageAmount = 1;
     const float _Attack01Damage = 1;
     const float _Attack02Damage = 2;
     const float _Attack03Damage = 3;
+
     private bool _IsInAttackAnim;
     private bool _InContact;
     private bool _OnContactPot;

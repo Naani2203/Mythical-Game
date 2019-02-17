@@ -220,7 +220,7 @@ public class ThirdPersonController : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             _Health.Damage(5);
-            KnockBack();
+            _Rigidbody.AddForce(other.gameObject.transform.forward * -4000f);
             _Anim.SetTrigger("IsHurt");
         }
 
@@ -233,10 +233,5 @@ public class ThirdPersonController : MonoBehaviour
             _CanJump = false;
             _IsGrounded = false;
         }
-    }
-
-    private void KnockBack()
-    {
-        _Rigidbody.AddForce(_Rigidbody.velocity = Vector3.right * -10);
     }
 }

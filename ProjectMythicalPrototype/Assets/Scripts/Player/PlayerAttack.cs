@@ -146,8 +146,6 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other != null)
         {
-
-            
             var otherUnit = other.GetComponent<EnemyHealth>();
             _Audio.clip = _HitImpact;
             _Audio.Play();
@@ -157,10 +155,16 @@ public class PlayerAttack : MonoBehaviour
 
     public void BreakObject(GameObject other)
     {
-        var breakable = other.GetComponent<BreakablebyPlayer>();
-        if (breakable != null)
-        {
+            var breakable = other.GetComponent<BreakablebyPlayer>();
             breakable.Break();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Pot")
+        {
+            _OnContactPot = true;
+            _PotOnContact = other.gameObject;
         }
     }
 
@@ -176,13 +180,6 @@ public class PlayerAttack : MonoBehaviour
             _OnContactPot = true;
             _PotOnContact = other.gameObject;
         }
-        //else
-        //{
-        //    _InContact = false;
-        //    _OnContactPot = false;
-        //    _EnemyInContact = null;
-        //    _PotOnContact = null;
-        //}
     }
 
 

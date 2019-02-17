@@ -8,8 +8,11 @@ public class BreakablebyPlayer : MonoBehaviour
     [SerializeField]
     private GameObject _OriginalObject;
     [SerializeField]
-
     private GameObject _BrokenObject;
+    [SerializeField]
+    private GameObject _HealthPickup;
+
+
     private Rigidbody _Rb;
     private AudioSource _Audio;
 
@@ -60,6 +63,7 @@ public class BreakablebyPlayer : MonoBehaviour
     {
         if (_IsTouchingProjectile || _IsTouchingPlayer)
         {
+            Instantiate(_HealthPickup, transform.position,Quaternion.identity);
             _Audio.Play();
             _OriginalObject.SetActive(false);
             _BrokenObject.SetActive(true);

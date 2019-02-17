@@ -988,6 +988,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _OriginalObject: {fileID: 1561177560513606}
   _BrokenObject: {fileID: 1024481661270734}
+  _HealthPickup: {fileID: 1227257755564476, guid: 19edcb72a8e4ffc4d903eb1341c8c416,
+    type: 2}
 --- !u!136 &136434684088652900
 CapsuleCollider:
   m_ObjectHideFlags: 1

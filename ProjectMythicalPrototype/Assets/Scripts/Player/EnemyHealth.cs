@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
 	[SerializeField]
     private float _CurrentHealth;
     [SerializeField]
-    private float _KnockBackForce;
+    private float _KnockBackForce = 2000f;
     [SerializeField]
     private Image _HealthBar;
     [SerializeField]
@@ -49,11 +49,10 @@ public class EnemyHealth : MonoBehaviour
 		CurrentHealth -= damageAmount;
         Debug.Log(gameObject.name + " takes " + damageAmount + " damage.");
 
-		if (CurrentHealth <= 0f)
-            Death();
+        _Rb.AddForce(transform.forward * -1f * _KnockBackForce);
 
-        if(_Rb!=null)
-            _Rb.AddForce(transform.forward *-1f * _KnockBackForce);
+        if (CurrentHealth <= 0f)
+            Death();
 
         //-------------------------------- AUDIO --------------------------------
         _Random = Random.Range(0, _AudioClips.Count);

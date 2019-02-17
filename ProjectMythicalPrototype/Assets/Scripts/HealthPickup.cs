@@ -11,7 +11,9 @@ public class HealthPickup : MonoBehaviour
 
     private void Awake()
     {
-        _Audio=GameObject.Find("PickupFX").GetComponent<AudioSource>();
+        //_Audio=GameObject.Find("PickupFX").GetComponent<AudioSource>();
+
+        _Audio.GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)

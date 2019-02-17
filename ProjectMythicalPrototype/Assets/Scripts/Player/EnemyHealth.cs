@@ -9,9 +9,9 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Health")]
 
-	[SerializeField]
+    [SerializeField]
     private float _MaxHealth = 3.0f;
-	[SerializeField]
+    [SerializeField]
     private float _CurrentHealth;
     [SerializeField]
     private float _KnockBackForce = 2000f;
@@ -19,7 +19,7 @@ public class EnemyHealth : MonoBehaviour
     private Image _HealthBar;
     [SerializeField]
     private List<AudioClip> _AudioClips;
-  
+
     private AudioSource _Audio;
     private Rigidbody _Rb;
     private int _Random;
@@ -45,22 +45,36 @@ public class EnemyHealth : MonoBehaviour
     //-------------------------------- ACTOR DAMAGED --------------------------------
 
     public void Damage(float damageAmount)
-	{
-		CurrentHealth -= damageAmount;
+    {
+        if(CurrentHealth <= damageAmount)
+        {
+            CurrentHealth = 0;
+        }
+        else
+        {
+            CurrentHealth -= damageAmount;
+        }
+        
         Debug.Log(gameObject.name + " takes " + damageAmount + " damage.");
 
-        _Rb.AddForce(transform.forward * -1f * _KnockBackForce);
+        if (_Rb != null)
+        {
+            _Rb.AddForce(transform.forward * -1f * _KnockBackForce);
+        }
 
         if (CurrentHealth <= 0f)
+        {
             Death();
+        }
+
 
         //-------------------------------- AUDIO --------------------------------
-        _Random = Random.Range(0, _AudioClips.Count);
+        _Random = Random.Range(1, _AudioClips.Count);
         _Audio.clip = _AudioClips[(int)_Random];
         _Audio.Play();
-	}
+    }
 
-	public void Death()
+    public void Death()
     {
         _HealthBar.enabled = false;
     }

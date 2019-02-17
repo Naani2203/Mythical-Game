@@ -26,14 +26,18 @@ public class SpearGuyFX : MonoBehaviour
         {
             _CanScreenShake = true;
         }
+        else
+        {
+            _CanScreenShake = false;
+        }
     }
 
 
     void SpawnParticleAtLeftLeg()
     {
-        if(_CanScreenShake==true)
-        {
         Instantiate(_StompParticleFX, _LeftLeg.position, Quaternion.identity);
+        if(_CanScreenShake==true && SlowMoController._InSlowMo==false)
+        {
         _Camera.CameraShake(0.3f, 0.08f);
         
 
@@ -41,9 +45,9 @@ public class SpearGuyFX : MonoBehaviour
     }
     void SpawnParticleAtRightLeg()
     {
-        if(_CanScreenShake==true)
-        {
         Instantiate(_StompParticleFX, _RightLeg.position, Quaternion.identity);
+        if(_CanScreenShake==true && SlowMoController._InSlowMo == false)
+        {
         _Camera.CameraShake(0.3f, 0.08f);
             
         }

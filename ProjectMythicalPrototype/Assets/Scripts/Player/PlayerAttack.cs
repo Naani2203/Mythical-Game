@@ -86,33 +86,6 @@ public class PlayerAttack : MonoBehaviour
                 _Anim.SetInteger("AttackNum", _AttackNumber);
                 _Audio.clip = _Attack01;
                 _Audio.Play();
-
-                RaycastHit hit;
-
-                if (Physics.SphereCast(_Weapon.transform.position, 3, _Weapon.transform.forward, out hit, _AttackRange))
-                {
-                    if (hit.collider.gameObject.CompareTag("Enemy"))
-                    {
-                        Attack(hit.point, hit.transform);
-                        Instantiate(_HitImpactParticle, hit.point, Quaternion.identity);
-                        _Camera.CameraShake(0.05f, 0.08f);
-                    }
-                    if (hit.collider.gameObject.CompareTag("Pot"))
-                    {
-                        var pot = hit.collider.GetComponent<BreakablebyPlayer>();
-                        if(pot != null)
-                            pot.Break();
-                    }
-                }
-                if (_InContact == true)
-                {
-                    AttackOnContact(_EnemyInContact);
-                }
-                if (_OnContactPot == true)
-                {
-                    BreakObject(_PotOnContact);
-                }
-
             }
         }
 
@@ -125,6 +98,36 @@ public class PlayerAttack : MonoBehaviour
                 _Audio.Play();
                 _DamageAmount = _ShootDamage;
             }
+        }
+    }
+
+    public void Melee()
+    {
+
+        RaycastHit hit;
+
+        if (Physics.SphereCast(_Weapon.transform.position, 3, _Weapon.transform.forward, out hit, _AttackRange))
+        {
+            if (hit.collider.gameObject.CompareTag("Enemy"))
+            {
+                Attack(hit.point, hit.transform);
+                Instantiate(_HitImpactParticle, hit.point, Quaternion.identity);
+                _Camera.CameraShake(0.05f, 0.08f);
+            }
+            if (hit.collider.gameObject.CompareTag("Pot"))
+            {
+                var pot = hit.collider.GetComponent<BreakablebyPlayer>();
+                if (pot != null)
+                    pot.Break();
+            }
+        }
+        if (_InContact == true)
+        {
+            AttackOnContact(_EnemyInContact);
+        }
+        if (_OnContactPot == true)
+        {
+            BreakObject(_PotOnContact);
         }
     }
 

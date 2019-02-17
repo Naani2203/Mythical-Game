@@ -33,7 +33,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void Update()
     {
+        if(_HealthBar!=null)
+        {
         _HealthBar.fillAmount = (_CurrentHealth / _MaxHealth);
+
+        }
     }
 
     public float CurrentHealth

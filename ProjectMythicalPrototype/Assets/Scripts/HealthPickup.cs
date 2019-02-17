@@ -8,6 +8,8 @@ public class HealthPickup : MonoBehaviour
     private AudioSource _Audio;
     [SerializeField]
     private AudioClip _HealthPickup;
+    [SerializeField]
+    private GameObject _Particle;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class HealthPickup : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            Instantiate(_Particle, transform.position, Quaternion.identity);
             _Audio.clip = _HealthPickup;
             _Audio.Play();
             Destroy(gameObject);

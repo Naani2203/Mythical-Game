@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 4033794688319268}
   - component: {fileID: 198253340098962578}
   - component: {fileID: 199831095811763062}
+  - component: {fileID: 114744343126833772}
   m_Layer: 0
   m_Name: Pickup
   m_TagString: Untagged
@@ -228,6 +229,18 @@ MonoBehaviour:
   showAdditionalSettings: 0
   displayLightIntensity: 66.34
   displayAreaLightEmissiveMesh: 0
+--- !u!114 &114744343126833772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1290052716946368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d5149531c33864b9e8690a1f171cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DestroyTime: 5
 --- !u!114 &114780281470090688
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -281,7 +294,7 @@ ParticleSystem:
   lengthInSec: 5
   simulationSpeed: 1
   stopAction: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0

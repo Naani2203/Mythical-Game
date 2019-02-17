@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/AngelaUIScenes/MainMenu.unity
     guid: 0a5fd7d4bc2c64c449e821e15650cbce
   - enabled: 1

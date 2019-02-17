@@ -176,13 +176,6 @@ public class PlayerAttack : MonoBehaviour
             _OnContactPot = true;
             _PotOnContact = other.gameObject;
         }
-        //else
-        //{
-        //    _InContact = false;
-        //    _OnContactPot = false;
-        //    _EnemyInContact = null;
-        //    _PotOnContact = null;
-        //}
     }
 
 

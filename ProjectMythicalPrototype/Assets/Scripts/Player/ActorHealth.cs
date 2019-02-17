@@ -73,7 +73,6 @@ public class ActorHealth : MonoBehaviour
     {
         PlayerCurrentHealth -= damageAmount;
         Debug.Log(gameObject.name + " takes " + damageAmount + " damage.");
-        //gameObject.GetComponent<Rigidbody>().AddForce( Vector3.right * -2000f);
         if (CurrentHealth <= 0f) Death();
         else
         {
@@ -101,7 +100,9 @@ public class ActorHealth : MonoBehaviour
 
     private IEnumerator WaitForAnim()
     {
-        yield return new WaitForSecondsRealtime(3f);
+        yield return new WaitForSecondsRealtime(0.7f);
+        _Audio.enabled = false;
+        yield return new WaitForSecondsRealtime(2f);
         _GameOverScreen.SetActive(true);
     }
 }

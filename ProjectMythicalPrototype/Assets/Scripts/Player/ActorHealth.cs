@@ -62,9 +62,14 @@ public class ActorHealth : MonoBehaviour
         if (other.tag == "Health")
         {
             if (CurrentHealth >= 85)
+            {
+
                 CurrentHealth = MaxHealth;
+            }
             else
+            {
                 CurrentHealth += 15;
+            }
         }
     }
 
@@ -73,7 +78,11 @@ public class ActorHealth : MonoBehaviour
     {
         PlayerCurrentHealth -= damageAmount;
         Debug.Log(gameObject.name + " takes " + damageAmount + " damage.");
-        if (CurrentHealth <= 0f) Death();
+        if (CurrentHealth <= 0f)
+        {
+
+            Death();
+        }
         else
         {
             IsHurt = true;

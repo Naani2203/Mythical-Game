@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
-    [SerializeField]
+   
     private AudioSource _Audio;
     [SerializeField]
     private AudioClip _HealthPickup;

@@ -128,7 +128,7 @@ public class ThirdPersonController : MonoBehaviour
 
         if (_IsAlive == true
             && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Interact") == false)
-            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("ProjectileAttack") == false)
+            && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Shoot") == false)
             && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack01") == false)
             && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack02") == false)
             && (_Anim.GetCurrentAnimatorStateInfo(0).IsName("Attack03") == false))
@@ -220,7 +220,7 @@ public class ThirdPersonController : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             _Health.Damage(5);
-            _Rigidbody.AddForce(other.gameObject.transform.forward * -4000f);
+            _Rigidbody.AddForce(other.gameObject.transform.forward * 5000f);
             _Anim.SetTrigger("IsHurt");
         }
 

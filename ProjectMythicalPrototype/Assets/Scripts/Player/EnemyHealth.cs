@@ -59,7 +59,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (_Rb != null)
         {
-            _Rb.AddForce(transform.forward * -1f * _KnockBackForce);
+            _Rb.AddForce(transform.forward * -1f * 2000f);
         }
 
         if (CurrentHealth <= 0f)

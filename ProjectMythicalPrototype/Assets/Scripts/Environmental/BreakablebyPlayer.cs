@@ -40,10 +40,6 @@ public class BreakablebyPlayer : MonoBehaviour
         {
             _IsTouchingPlayer = true;
         }
-        else
-        {
-            _IsTouchingPlayer = false;
-        }
     }
 
     private void OnTriggerExit(Collider other)

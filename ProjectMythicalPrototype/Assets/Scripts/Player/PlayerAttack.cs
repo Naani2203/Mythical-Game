@@ -126,9 +126,13 @@ public class PlayerAttack : MonoBehaviour
                 _Audio.clip = _Shoot;
                 _Audio.Play();
                 _DamageAmount = _ShootDamage;
-                _ProjectileAttack.Fire();
             }
         }
+    }
+
+    public void FireProjectile()
+    {
+        _ProjectileAttack.Fire();
     }
 
     private void Attack(Vector3 hitPos, Transform other)

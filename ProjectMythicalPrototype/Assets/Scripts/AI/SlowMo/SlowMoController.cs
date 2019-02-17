@@ -16,6 +16,7 @@ public class SlowMoController : MonoBehaviour
     private float _SlowMoCoolDown = 4f;
     private float _Delay=0;
     public static bool _IsAttackSloMo;
+    public static bool _InSlowMo;
 
 
     private bool _CanSlowMo = false;
@@ -39,6 +40,7 @@ public class SlowMoController : MonoBehaviour
             Time.timeScale = _SlowMoAmount;
             _SlowMoCD = true;
             StartCoroutine(ResetTimeScale());
+            _InSlowMo = true;
         }
     }
 
@@ -47,6 +49,7 @@ public class SlowMoController : MonoBehaviour
         yield return new WaitForSecondsRealtime(_SlowMoTime);
         Time.timeScale = 1f;
         _CanSlowMo = false;
+        _InSlowMo = false;
     }
     private void Update()
     {

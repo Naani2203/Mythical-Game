@@ -146,6 +146,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (other != null)
         {
+
+            
             var otherUnit = other.GetComponent<EnemyHealth>();
             _Audio.clip = _HitImpact;
             _Audio.Play();
@@ -174,13 +176,13 @@ public class PlayerAttack : MonoBehaviour
             _OnContactPot = true;
             _PotOnContact = other.gameObject;
         }
-        else
-        {
-            _InContact = false;
-            _OnContactPot = false;
-            _EnemyInContact = null;
-            _PotOnContact = null;
-        }
+        //else
+        //{
+        //    _InContact = false;
+        //    _OnContactPot = false;
+        //    _EnemyInContact = null;
+        //    _PotOnContact = null;
+        //}
     }
 
 

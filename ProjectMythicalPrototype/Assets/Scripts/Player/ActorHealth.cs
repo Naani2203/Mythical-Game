@@ -11,7 +11,7 @@ public class ActorHealth : MonoBehaviour
 
     [SerializeField]
     private GameObject _GameOverScreen;
-  
+
 
     //------------------------------------- AUDIO ------------------------------------
     [Header("Audio")]
@@ -36,6 +36,7 @@ public class ActorHealth : MonoBehaviour
     //------------------------------------- ANIMATION VALUES ---------------------------
     public bool IsAlive;
     public bool IsHurt;
+    private bool _IsImmune;
 
     protected void Start()
     {
@@ -76,18 +77,26 @@ public class ActorHealth : MonoBehaviour
     //-------------------------------- ACTOR DAMAGED & DEATH --------------------------------
     public void Damage(float damageAmount)
     {
-        PlayerCurrentHealth -= damageAmount;
-        Debug.Log(gameObject.name + " takes " + damageAmount + " damage.");
         if (CurrentHealth <= 0f)
         {
-
             Death();
         }
         else
         {
-            IsHurt = true;
-            _Audio.clip = _Hurt01;
-            _Audio.Play();
+            if (_IsImmune == true)
+            {
+                IsHurt = false;
+
+            }
+            else
+            {
+                IsHurt = true;
+                _Audio.clip = _Hurt01;
+                _Audio.Play();
+                PlayerCurrentHealth -= damageAmount;
+                Debug.Log(gameObject.name + " takes " + damageAmount + " damage.");
+                StartCoroutine(Immunity());
+            }
         }
     }
 
@@ -105,7 +114,7 @@ public class ActorHealth : MonoBehaviour
         IsAlive = false;
         _GameOverScreen.SetActive(true);
     }
-    
+
 
     private IEnumerator WaitForAnim()
     {
@@ -113,5 +122,12 @@ public class ActorHealth : MonoBehaviour
         _Audio.enabled = false;
         yield return new WaitForSecondsRealtime(2f);
         _GameOverScreen.SetActive(true);
+    }
+
+    private IEnumerator Immunity()
+    {
+        _IsImmune = true;
+        yield return new WaitForSecondsRealtime(1f);
+        _IsImmune = false;
     }
 }

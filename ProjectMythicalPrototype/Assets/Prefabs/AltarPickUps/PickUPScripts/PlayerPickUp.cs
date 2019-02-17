@@ -17,6 +17,9 @@ public class PlayerPickUp : MonoBehaviour
     private GameObject _RedRunePrefab;
     [SerializeField]
     private GameObject _BlueRunePrefab;
+    [SerializeField]
+    private GameObject _Particle;
+
 
     [Header("UI")]
     [SerializeField]
@@ -99,18 +102,21 @@ public class PlayerPickUp : MonoBehaviour
     {
         if(other.gameObject.name=="GreenPickUp")
         {
+            Instantiate(_Particle, transform.position, Quaternion.identity);
             IsGreenGem = true;
             _GreenRuneUI.SetActive(true);
             Destroy(other.gameObject);
         }
         if (other.gameObject.name == "RedPickup")
         {
+            Instantiate(_Particle, transform.position, Quaternion.identity);
             IsRedGem = true;
             _RedRuneUI.SetActive(true);
             Destroy(other.gameObject);
         }
         if (other.gameObject.name == "BluePickUp")
         {
+            Instantiate(_Particle, transform.position, Quaternion.identity);
             IsBlueGem = true;
             _BlueRuneUI.SetActive(true);
             Destroy(other.gameObject);

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 65954181431072512}
   - component: {fileID: 114649779061236148}
   m_Layer: 0
-  m_Name: CameraSwap
+  m_Name: HelperSwap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

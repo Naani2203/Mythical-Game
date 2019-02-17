@@ -9,8 +9,6 @@ public class PlayerAttack : MonoBehaviour
     private float _AttackRange = 3.5f;
     [SerializeField]
     private float _ShootDamage = 2f;
-    [SerializeField]
-    private float _KnockBackEnemy = 20f;
 
     private int _AttackNumber = 1;
     private float _DamageAmount = 1;
@@ -184,6 +182,8 @@ public class PlayerAttack : MonoBehaviour
             _PotOnContact = null;
         }
     }
+
+
 
     private void OnTriggerExit(Collider other)
     {

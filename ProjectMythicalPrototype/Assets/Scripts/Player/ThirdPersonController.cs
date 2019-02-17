@@ -23,7 +23,7 @@ public class ThirdPersonController : MonoBehaviour
     private Vector3 _Rotation;
     private Vector3 _MoveForward;
     private Vector3 _MoveSideways;
-    private bool _CanMove;
+    public static bool _CanMove;
     public static bool CanMoveJumpPad;
 
 
@@ -143,7 +143,7 @@ public class ThirdPersonController : MonoBehaviour
         //-------------------------------- NO ROTATION AND MOVEMENT ON ACTIONS---------------------------------------------
         if (_CanMove && _MoveInput != Vector3.zero)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_CamTemp * -1), 0.15F);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_CamTemp * -1 * Time.deltaTime), 0.15F);
         }
         else
         {

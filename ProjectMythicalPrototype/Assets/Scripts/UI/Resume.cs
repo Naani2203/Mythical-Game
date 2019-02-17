@@ -10,6 +10,7 @@ public class Resume : MonoBehaviour
 
     public void ButtonPressed()
     {
+        ThirdPersonController._CanMove = true;
         _PauseScreen.SetActive(false);
         Time.timeScale = 1;
     }

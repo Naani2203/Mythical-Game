@@ -102,7 +102,8 @@ public class PlayerAttack : MonoBehaviour
                     if (hit.collider.gameObject.CompareTag("Pot"))
                     {
                         var pot = hit.collider.GetComponent<BreakablebyPlayer>();
-                        pot.Break();
+                        if(pot != null)
+                            pot.Break();
                     }
                 }
                 if (_InContact == true)
@@ -141,9 +142,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackOnContact(GameObject other)
     {
-        var otherUnit = other.GetComponent<EnemyHealth>();
-        if (otherUnit != null)
+        if (other != null)
         {
+            var otherUnit = other.GetComponent<EnemyHealth>();
             _Audio.clip = _HitImpact;
             _Audio.Play();
             otherUnit.Damage(_DamageAmount);

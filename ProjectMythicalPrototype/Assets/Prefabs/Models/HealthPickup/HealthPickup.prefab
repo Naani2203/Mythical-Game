@@ -287,6 +287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _HealthPickup: {fileID: 8300000, guid: 22e55ed4d1bbf514db1d575ccdce93a2, type: 3}
+  _Particle: {fileID: 1290052716946368, guid: 721ea7219805a634b88ce4a6605dcc48, type: 2}
 --- !u!114 &114444115902599632
 MonoBehaviour:
   m_ObjectHideFlags: 1

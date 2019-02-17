@@ -1959,7 +1959,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1543513288359684}
   m_LocalRotation: {x: -0.37754557, y: 0.37636077, z: -0.1715087, w: 0.8284906}
-  m_LocalPosition: {x: -38.79, y: -4.4800005, z: 42.480003}
+  m_LocalPosition: {x: -88.29, y: 100.60999, z: 115.810005}
   m_LocalScale: {x: 3.0648005, y: 4, z: 3.0647998}
   m_Children:
   - {fileID: 4163660340113800}
@@ -2179,7 +2179,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 1688bd6fa4822d341ade64f7c7534c44, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2462,7 +2462,7 @@ MonoBehaviour:
   - {fileID: 0}
   anim: {fileID: 95267009855335990}
   NavMeshAgent: {fileID: 195552027773262344}
-  enemyRange: 40
+  enemyRange: 50
   attackDelay: 2
   dashSpeed: 70
   target: {x: 0, y: 0, z: 0}

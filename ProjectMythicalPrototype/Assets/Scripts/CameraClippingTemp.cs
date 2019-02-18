@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class CameraClippingTemp : MonoBehaviour
 {
+    private MeshRenderer _Mesh;
+
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<MeshRenderer>().enabled = false;
+        _Mesh = other.GetComponent<MeshRenderer>();
+        if(_Mesh!=null)
+        {
+            _Mesh.enabled = false;
+        }
     }
     private void OnTriggerExit(Collider other)
     {
-        other.GetComponent<MeshRenderer>().enabled = true;
+        _Mesh = other.GetComponent<MeshRenderer>();
+        if (_Mesh != null)
+        {
+            _Mesh.enabled = true;
+        }
     }
 }

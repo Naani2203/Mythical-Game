@@ -13,6 +13,8 @@ public class ChangeLighting : MonoBehaviour
     private GameObject _NightAbience;
     [SerializeField]
     private GameObject _DayAmbience;
+    [SerializeField]
+    private AudioSource _Audio;
     private bool _LightChange;
     ColorGrading color;
     PostProcessVolume ppv;
@@ -27,6 +29,7 @@ public class ChangeLighting : MonoBehaviour
 	
     public void BeatChange()
     {
+            _Audio.Play();
         if(color.postExposure.value<5 && _LightChange==false)
         {
            color.postExposure.value +=0.050f ;

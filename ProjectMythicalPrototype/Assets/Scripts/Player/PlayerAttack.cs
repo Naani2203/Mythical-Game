@@ -158,8 +158,11 @@ public class PlayerAttack : MonoBehaviour
 
     public void BreakObject(GameObject other)
     {
+        if (other != null)
+        {
             var breakable = other.GetComponent<BreakablebyPlayer>();
             breakable.Break();
+        }  
     }
 
     private void OnTriggerEnter(Collider other)

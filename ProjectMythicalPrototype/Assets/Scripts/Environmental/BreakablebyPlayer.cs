@@ -28,42 +28,42 @@ public class BreakablebyPlayer : MonoBehaviour
     {
         if (other.CompareTag("Projectile"))
         {
-            _IsTouchingProjectile = true;
+            //_IsTouchingProjectile = true;
             Break();
         }
-        else
-        {
-            _IsTouchingProjectile = false;
-        }
+        //else
+        //{
+        //    _IsTouchingProjectile = false;
+        //}
 
-        if (other.CompareTag("Player"))
-        {
-            _IsTouchingPlayer = true;
-        }
+        //if (other.CompareTag("Player"))
+        //{
+        //    _IsTouchingPlayer = true;
+        //}
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Projectile"))
-        {
-            _IsTouchingProjectile = false;
-        }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("Projectile"))
+    //    {
+    //        _IsTouchingProjectile = false;
+    //    }
 
-        if (other.CompareTag("Player"))
-        {
-            _IsTouchingPlayer = false;
-        }
-    }
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        _IsTouchingPlayer = false;
+    //    }
+    //}
 
     public void Break()
     {
-        if (_IsTouchingProjectile || _IsTouchingPlayer)
-        {
+        //if (_IsTouchingProjectile || _IsTouchingPlayer)
+        //{
             
             Instantiate(_HealthPickup, transform.position,Quaternion.identity);
             _Audio.Play();
             _OriginalObject.SetActive(false);
             _BrokenObject.SetActive(true);
-        }
+        //}
     }
 }

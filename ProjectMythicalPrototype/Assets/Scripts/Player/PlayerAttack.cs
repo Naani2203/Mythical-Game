@@ -101,7 +101,7 @@ public class PlayerAttack : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.SphereCast(_Weapon.transform.position, 3, _Weapon.transform.forward, out hit, _AttackRange))
+        if (Physics.SphereCast(_Weapon.transform.position, 5, _Weapon.transform.forward, out hit, _AttackRange))
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
@@ -141,6 +141,8 @@ public class PlayerAttack : MonoBehaviour
         var otherUnit = other.GetComponent<EnemyHealth>();
         if (otherUnit != null)
         {
+            _Audio.clip = _HitImpact;
+            _Audio.Play();
             otherUnit.Damage(_DamageAmount);
         }
     }
@@ -161,8 +163,9 @@ public class PlayerAttack : MonoBehaviour
         if (other != null)
         {
             var breakable = other.GetComponent<BreakablebyPlayer>();
-            breakable.Break();
-        }  
+            if (breakable != null)
+                breakable.Break();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

@@ -66,8 +66,8 @@ public class Projectile : MonoBehaviour {
             {
                 hitActor.Damage(_Damage);
             }
+           Destroy(gameObject);
         }
 
-        Destroy(gameObject);
     }
 }

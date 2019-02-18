@@ -99,9 +99,13 @@ public class PlayerAttack : MonoBehaviour
 
     public void Melee()
     {
-        RaycastHit hit;
+     
 
-        if (Physics.SphereCast(_Weapon.transform.position, 5f,Vector3.zero, out hit, _AttackRange))
+        RaycastHit[] hits;
+
+        hits = Physics.SphereCastAll(_Weapon.transform.position, 5f, Vector3.zero, _AttackRange);
+
+        foreach (RaycastHit hit in hits)
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
@@ -109,13 +113,14 @@ public class PlayerAttack : MonoBehaviour
                 Instantiate(_HitImpactParticle, hit.point, Quaternion.identity);
                 _Camera.CameraShake(0.05f, 0.08f);
             }
-            //if (hit.collider.gameObject.CompareTag("Pot"))
-            //{
-            //    var pot = hit.collider.GetComponent<BreakablebyPlayer>();
-            //    if (pot != null)
-            //        pot.Break();
-            //}
         }
+        //if (hit.collider.gameObject.CompareTag("Pot"))
+        //{
+        //    var pot = hit.collider.GetComponent<BreakablebyPlayer>();
+        //    if (pot != null)
+        //        pot.Break();
+        //}
+    
         if (_InContact == true)
         {
             AttackOnContact(_EnemyInContact);

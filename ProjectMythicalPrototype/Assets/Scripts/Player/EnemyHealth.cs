@@ -71,9 +71,13 @@ public class EnemyHealth : MonoBehaviour
 
 
         //-------------------------------- AUDIO --------------------------------
+        if(_AudioClips.Count>0)
+        {
         _Random = Random.Range(1, _AudioClips.Count);
         _Audio.clip = _AudioClips[(int)_Random];
         _Audio.Play();
+        }
+
     }
 
     public void Death()

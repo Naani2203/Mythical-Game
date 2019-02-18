@@ -78,6 +78,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void Death()
     {
+        if(_HealthBar!=null)
         _HealthBar.enabled = false;
     }
 }

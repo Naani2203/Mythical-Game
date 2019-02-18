@@ -66,7 +66,7 @@ public class FinalPlatformMover : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && other.GetType()==typeof(CapsuleCollider))
         {
             //if(Input.GetButtonDown("Interact"))
             //{

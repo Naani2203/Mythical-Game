@@ -17,6 +17,8 @@ public class PlayerFX : MonoBehaviour
     [SerializeField]
     private AudioSource _Audio;
     [SerializeField]
+    private AudioSource _FootStepsFX;
+    [SerializeField]
     private AudioClip _FaunLand;
     [SerializeField]
     private AudioClip _FaunFootStepsLeft;
@@ -44,12 +46,12 @@ public class PlayerFX : MonoBehaviour
     }
     public void PLaySoundAtLeftFoot()
     {
-        _Audio.clip = _FaunFootStepsLeft;
-        _Audio.Play();
+        _FootStepsFX.clip = _FaunFootStepsLeft;
+        _FootStepsFX.Play();
     }
     public void PLaySoundAtRightFoot()
     {
-        _Audio.clip = _FaunFootStepsRight;
-        _Audio.Play();
+        _FootStepsFX.clip = _FaunFootStepsRight;
+        _FootStepsFX.Play();
     }
 }

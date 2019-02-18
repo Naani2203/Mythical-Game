@@ -103,7 +103,7 @@ public class PlayerAttack : MonoBehaviour
 
         RaycastHit[] hits;
 
-        hits = Physics.SphereCastAll(_Weapon.transform.position, 5f, Vector3.zero, _AttackRange);
+        hits = Physics.SphereCastAll(_Weapon.transform.position, 4f, Vector3.zero, _AttackRange);
 
         foreach (RaycastHit hit in hits)
         {

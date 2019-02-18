@@ -31,9 +31,9 @@ public class ChangeLighting : MonoBehaviour
 	
     public void BeatChange()
     {
-            _Audio.Play();
         if(color.postExposure.value<5 && _LightChange==false)
         {
+            _Audio.Play();
            color.postExposure.value +=0.050f ;
         }
        else if(color.postExposure.value>=5)

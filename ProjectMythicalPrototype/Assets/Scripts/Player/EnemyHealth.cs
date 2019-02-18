@@ -14,8 +14,6 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField]
     private float _CurrentHealth;
     [SerializeField]
-    private float _KnockBackForce = 2000f;
-    [SerializeField]
     private Image _HealthBar;
     [SerializeField]
     private List<AudioClip> _AudioClips;

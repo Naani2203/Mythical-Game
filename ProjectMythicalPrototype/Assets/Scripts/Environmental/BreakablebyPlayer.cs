@@ -11,6 +11,9 @@ public class BreakablebyPlayer : MonoBehaviour
     private GameObject _BrokenObject;
     [SerializeField]
     private GameObject _HealthPickup;
+    [SerializeField]
+    private EnemyHealth _EnemyHealth;
+    private bool _IsBroken;
 
 
     private Rigidbody _Rb;
@@ -21,15 +24,23 @@ public class BreakablebyPlayer : MonoBehaviour
 
     private void Awake()
     {
+        _IsBroken = false;
         _Audio = GetComponent<AudioSource>();
         _Rb = GetComponent<Rigidbody>();
+    }
+    private void Update()
+    {
+        if(_IsBroken==false && _EnemyHealth.CurrentHealth<=0)
+        {
+            ExplodePot();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Projectile"))
         {
             //_IsTouchingProjectile = true;
-            Break();
+            //Break();
         }
         //else
         //{
@@ -55,15 +66,23 @@ public class BreakablebyPlayer : MonoBehaviour
     //    }
     //}
 
-    public void Break()
-    {
-        //if (_IsTouchingProjectile || _IsTouchingPlayer)
-        //{
+    //public void Break()
+    //{
+    //    //if (_IsTouchingProjectile || _IsTouchingPlayer)
+    //    //{
             
-            Instantiate(_HealthPickup, transform.position,Quaternion.identity);
-            _Audio.Play();
-            _OriginalObject.SetActive(false);
-            _BrokenObject.SetActive(true);
-        //}
+    //        _Audio.Play();
+    //    //}
+    //        Instantiate(_HealthPickup, transform.position,Quaternion.identity);
+    //        _OriginalObject.SetActive(false);
+    //        _BrokenObject.SetActive(true);
+    //}
+    private void ExplodePot()
+    {
+        _Audio.Play();
+        Instantiate(_HealthPickup, transform.position, Quaternion.identity);
+        _OriginalObject.SetActive(false);
+        _BrokenObject.SetActive(true);
+        _IsBroken = true;
     }
 }

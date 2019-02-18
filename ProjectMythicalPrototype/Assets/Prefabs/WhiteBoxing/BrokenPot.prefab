@@ -94,9 +94,10 @@ GameObject:
   - component: {fileID: 114725119008771940}
   - component: {fileID: 136666570703087260}
   - component: {fileID: 82753546516793666}
+  - component: {fileID: 114383071647349266}
   m_Layer: 0
   m_Name: BrokenPot
-  m_TagString: Pot
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -891,7 +892,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: eef4a1ba950740b4eb2e6cd3af6c9d07, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -975,6 +976,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &114383071647349266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1455300680973136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c738a6ab6f1fb4937b8059fe95e95383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MaxHealth: 1
+  _CurrentHealth: 0
+  _HealthBar: {fileID: 0}
+  _AudioClips: []
 --- !u!114 &114725119008771940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -990,6 +1006,7 @@ MonoBehaviour:
   _BrokenObject: {fileID: 1024481661270734}
   _HealthPickup: {fileID: 1227257755564476, guid: 19edcb72a8e4ffc4d903eb1341c8c416,
     type: 2}
+  _EnemyHealth: {fileID: 114383071647349266}
 --- !u!136 &136434684088652900
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1002,7 +1019,7 @@ CapsuleCollider:
   m_Radius: 0.6034559
   m_Height: 2.3
   m_Direction: 1
-  m_Center: {x: -0.00040972233, y: 0.9270829, z: 0.0010485053}
+  m_Center: {x: -0.00040972233, y: 1.19, z: 0.0010485053}
 --- !u!136 &136666570703087260
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1015,4 +1032,4 @@ CapsuleCollider:
   m_Radius: 0.68521315
   m_Height: 2.98
   m_Direction: 1
-  m_Center: {x: -0.35, y: 34.433178, z: -2.5449119}
+  m_Center: {x: -0.35, y: 34.69, z: -2.5449119}

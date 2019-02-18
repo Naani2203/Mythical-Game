@@ -101,7 +101,7 @@ public class PlayerAttack : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.SphereCast(_Weapon.transform.position, 4.5f, _Weapon.transform.forward, out hit, _AttackRange))
+        if (Physics.SphereCast(_Weapon.transform.position, 5f,Vector3.zero, out hit, _AttackRange))
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {
@@ -109,21 +109,21 @@ public class PlayerAttack : MonoBehaviour
                 Instantiate(_HitImpactParticle, hit.point, Quaternion.identity);
                 _Camera.CameraShake(0.05f, 0.08f);
             }
-            if (hit.collider.gameObject.CompareTag("Pot"))
-            {
-                var pot = hit.collider.GetComponent<BreakablebyPlayer>();
-                if (pot != null)
-                    pot.Break();
-            }
+            //if (hit.collider.gameObject.CompareTag("Pot"))
+            //{
+            //    var pot = hit.collider.GetComponent<BreakablebyPlayer>();
+            //    if (pot != null)
+            //        pot.Break();
+            //}
         }
         if (_InContact == true)
         {
             AttackOnContact(_EnemyInContact);
         }
-        if (_OnContactPot == true)
-        {
-            BreakObject(_PotOnContact);
-        }
+        //if (_OnContactPot == true)
+        //{
+        //    BreakObject(_PotOnContact);
+        //}
 
         _Audio.clip = _Attack01;
         _Audio.Play();
@@ -158,24 +158,24 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    public void BreakObject(GameObject other)
-    {
-        if (other != null)
-        {
-            var breakable = other.GetComponent<BreakablebyPlayer>();
-            if (breakable != null)
-                breakable.Break();
-        }
-    }
+    //public void BreakObject(GameObject other)
+    //{
+    //    if (other != null)
+    //    {
+    //        var breakable = other.GetComponent<BreakablebyPlayer>();
+    //        if (breakable != null)
+    //            breakable.Break();
+    //    }
+    //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Pot")
-        {
-            _OnContactPot = true;
-            _PotOnContact = other.gameObject;
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Pot")
+    //    {
+    //        _OnContactPot = true;
+    //        _PotOnContact = other.gameObject;
+    //    }
+    //}
 
     private void OnTriggerStay(Collider other)
     {
@@ -184,23 +184,23 @@ public class PlayerAttack : MonoBehaviour
             _InContact = true;
             _EnemyInContact = other.gameObject;
         }
-        else if (other.gameObject.tag == "Pot")
-        {
-            _OnContactPot = true;
-            _PotOnContact = other.gameObject;
-        }
+        //else if (other.gameObject.tag == "Pot")
+        //{
+        //    _OnContactPot = true;
+        //    _PotOnContact = other.gameObject;
+        //}
     }
 
 
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            _InContact = false;
-            _EnemyInContact = null;
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Enemy")
+    //    {
+    //        _InContact = false;
+    //        _EnemyInContact = null;
+    //    }
+    //}
 
     private void SetRandomAttack()
     {

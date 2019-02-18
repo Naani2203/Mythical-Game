@@ -34,6 +34,12 @@ public class PlayerPickUp : MonoBehaviour
     private ChangeLighting _ChangeLighting;
     private bool _IsLightChange;
 
+    [Header("Audio")]
+    [SerializeField]
+    private AudioSource _PickUpFX;
+    [SerializeField]
+    private AudioClip _PickUpClip;
+
     public  float _SpeedOfRune;
 
     [HideInInspector]
@@ -103,6 +109,8 @@ public class PlayerPickUp : MonoBehaviour
         if(other.gameObject.name=="GreenPickUp")
         {
             Instantiate(_Particle, transform.position, Quaternion.identity);
+            _PickUpFX.clip = _PickUpClip;
+            _PickUpFX.Play();
             IsGreenGem = true;
             _GreenRuneUI.SetActive(true);
             Destroy(other.gameObject);
@@ -110,6 +118,8 @@ public class PlayerPickUp : MonoBehaviour
         if (other.gameObject.name == "RedPickup")
         {
             Instantiate(_Particle, transform.position, Quaternion.identity);
+            _PickUpFX.clip = _PickUpClip;
+            _PickUpFX.Play();
             IsRedGem = true;
             _RedRuneUI.SetActive(true);
             Destroy(other.gameObject);
@@ -117,6 +127,8 @@ public class PlayerPickUp : MonoBehaviour
         if (other.gameObject.name == "BluePickUp")
         {
             Instantiate(_Particle, transform.position, Quaternion.identity);
+            _PickUpFX.clip = _PickUpClip;
+            _PickUpFX.Play();
             IsBlueGem = true;
             _BlueRuneUI.SetActive(true);
             Destroy(other.gameObject);

@@ -33,6 +33,7 @@ public class PlayerPickUp : MonoBehaviour
     [SerializeField]
     private ChangeLighting _ChangeLighting;
     private bool _IsLightChange;
+    private bool _IsEndGame;
 
     [Header("Audio")]
     [SerializeField]
@@ -57,6 +58,7 @@ public class PlayerPickUp : MonoBehaviour
         IsRedGem = false;
         IsBlueGem = false;
         _IsLightChange = false;
+        _IsEndGame = false;
 
     }
     private void Update()
@@ -69,6 +71,11 @@ public class PlayerPickUp : MonoBehaviour
         {
             _ChangeLighting.BeatChange();
         }
+        if(_IsEndGame)
+        {
+            _ChangeLighting.EndGame();
+        }
+
     }
 
     public void GemSpawn()
@@ -136,6 +143,10 @@ public class PlayerPickUp : MonoBehaviour
         if(other.gameObject.CompareTag("Altar"))
         {
             IsAltar = true;
+        }
+        if(other.gameObject.CompareTag("EndGame"))
+        {
+            _IsEndGame = true;
         }
     }
     private void OnTriggerExit(Collider other)

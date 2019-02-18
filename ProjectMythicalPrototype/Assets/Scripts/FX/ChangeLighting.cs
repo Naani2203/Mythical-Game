@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class ChangeLighting : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class ChangeLighting : MonoBehaviour
     [SerializeField]
     private AudioSource _Audio;
     private bool _LightChange;
+    private bool _IsEndGame;
     ColorGrading color;
     PostProcessVolume ppv;
 	
@@ -51,4 +53,20 @@ public class ChangeLighting : MonoBehaviour
 
         }
     }
+    public void EndGame()
+    {
+        if (color.postExposure.value < 2.5 && _IsEndGame == false)
+        {
+            color.postExposure.value += 0.050f;
+        }
+        else if (color.postExposure.value >= 2.5)
+        {
+            _IsEndGame = true;
+        }
+        if(_IsEndGame==true)
+        {
+            SceneManager.LoadScene("EndCredit");
+        }
+    }
+
 }

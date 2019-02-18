@@ -101,7 +101,7 @@ public class PlayerAttack : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.SphereCast(_Weapon.transform.position, 5, _Weapon.transform.forward, out hit, _AttackRange))
+        if (Physics.SphereCast(_Weapon.transform.position, 4.5f, _Weapon.transform.forward, out hit, _AttackRange))
         {
             if (hit.collider.gameObject.CompareTag("Enemy"))
             {

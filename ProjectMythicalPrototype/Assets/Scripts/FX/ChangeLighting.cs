@@ -16,28 +16,20 @@ public class ChangeLighting : MonoBehaviour
     private bool _LightChange;
     ColorGrading color;
     PostProcessVolume ppv;
-	// Use this for initialization
+	
 	void Start ()
     {
         _LightChange = false;
         ppv = GetComponent<PostProcessVolume>();
         ppv.profile.TryGetSettings(out color);
-        //color.postExposure.value = 5f;
+        
 	}
 	
-	// Update is called once per frame
-	void Update ()
-    {
-        
-         
-        
-		
-	}
     public void BeatChange()
     {
         if(color.postExposure.value<5 && _LightChange==false)
         {
-           color.postExposure.value +=0.025f ;
+           color.postExposure.value +=0.050f ;
         }
        else if(color.postExposure.value>=5)
         {
@@ -51,7 +43,7 @@ public class ChangeLighting : MonoBehaviour
             _DayLight.SetActive(true);
             if(color.postExposure.value>0)
             {
-                color.postExposure.value -=0.025f ;
+                color.postExposure.value -=0.050f ;
             }
 
         }

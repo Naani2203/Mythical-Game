@@ -84,8 +84,6 @@ public class PlayerAttack : MonoBehaviour
                 SetRandomAttack();
                 _Anim.SetTrigger("Attack");
                 _Anim.SetInteger("AttackNum", _AttackNumber);
-                _Audio.clip = _Attack01;
-                _Audio.Play();
             }
         }
 
@@ -94,8 +92,6 @@ public class PlayerAttack : MonoBehaviour
             if (_IsInAttackAnim == false)
             {
                 _Anim.SetTrigger("Fire");
-                _Audio.clip = _Shoot;
-                _Audio.Play();
                 _DamageAmount = _ShootDamage;
             }
         }
@@ -103,7 +99,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void Melee()
     {
-
         RaycastHit hit;
 
         if (Physics.SphereCast(_Weapon.transform.position, 3, _Weapon.transform.forward, out hit, _AttackRange))
@@ -129,11 +124,16 @@ public class PlayerAttack : MonoBehaviour
         {
             BreakObject(_PotOnContact);
         }
+
+        _Audio.clip = _Attack01;
+        _Audio.Play();
     }
 
     public void FireProjectile()
     {
         _ProjectileAttack.Fire();
+        _Audio.clip = _Shoot;
+        _Audio.Play();
     }
 
     private void Attack(Vector3 hitPos, Transform other)

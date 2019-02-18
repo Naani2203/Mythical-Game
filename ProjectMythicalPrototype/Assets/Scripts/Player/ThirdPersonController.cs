@@ -39,6 +39,7 @@ public class ThirdPersonController : MonoBehaviour
     private Vector3 _V;
     private Vector3 _Velocity;
     private Vector3 _MVelocity;
+    public static bool _CanInteract;
 
     //Values for animations:
     private bool _IsAlive;
@@ -116,7 +117,7 @@ public class ThirdPersonController : MonoBehaviour
         _IsHurt = _Health.IsHurt;
 
         //-------------------------------- INTERACT ---------------------------------------------
-        if (Input.GetKeyDown("joystick button 3") == true)
+        if (Input.GetKeyDown("joystick button 3") == true && _CanInteract==true)
         {
             _Anim.SetTrigger("Interact");
             Debug.Log("interact triggered");

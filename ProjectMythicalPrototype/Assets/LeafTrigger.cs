@@ -40,6 +40,7 @@ public class LeafTrigger : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
+            ThirdPersonController._CanInteract = true;
             _UI.SetActive(true);
             if(Input.GetButtonDown("Interact"))
             _CanSpawn = true;
@@ -50,6 +51,7 @@ public class LeafTrigger : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
+            ThirdPersonController._CanInteract = false;
             _CanSpawn = false;
             _UI.SetActive(false);
         }

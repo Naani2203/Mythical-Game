@@ -45,10 +45,16 @@ public class ActorHealth : MonoBehaviour
         CheckpointManager = _Manager.GetComponent<CheckpointManager>();
         IsAlive = true;
         IsHurt = false;
+        _Audio.enabled = true;
+
     }
     private void Update()
     {
         _PlayerHealthBar.fillAmount = PlayerCurrentHealth / MaxHealth;
+        if (IsAlive)
+        {
+            _Audio.enabled = true;
+        }
     }
 
     public float CurrentHealth

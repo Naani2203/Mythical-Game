@@ -11,6 +11,7 @@ public class Checkpoint : MonoBehaviour
 	{
         _CheckpointActivated = false;
         _AudioSource = GetComponent<AudioSource>();
+        _AudioSource.enabled = true;
 	}
 
 	private void OnTriggerEnter(Collider other)

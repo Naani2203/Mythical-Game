@@ -59,6 +59,7 @@ public class BreakablebyPlayer : MonoBehaviour
     {
         if (_IsTouchingProjectile || _IsTouchingPlayer)
         {
+            
             Instantiate(_HealthPickup, transform.position,Quaternion.identity);
             _Audio.Play();
             _OriginalObject.SetActive(false);

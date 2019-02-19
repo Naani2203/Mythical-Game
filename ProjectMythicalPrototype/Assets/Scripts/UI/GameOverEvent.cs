@@ -14,8 +14,8 @@ public class GameOverEvent : MonoBehaviour
 
     private void Awake()
     {
-        _EventSystem.firstSelectedGameObject = _FirstSelected;
-       
+       // _EventSystem.firstSelectedGameObject = _FirstSelected;
+        EventSystem.current.SetSelectedGameObject(_FirstSelected);
     }
    
 

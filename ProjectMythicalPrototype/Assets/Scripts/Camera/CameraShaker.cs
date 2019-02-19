@@ -20,7 +20,7 @@ public class CameraShaker : MonoBehaviour
     private void Update()
     {
       
-       if(_IsCameraShake==true)
+       if(_IsCameraShake==true&& SlowMoController._InSlowMo==false)
         {
             //StartCoroutine(CameraShake(0.3f, 0.08f));
             StartCoroutine(CameraShaked(_Duration, _Magnitude));
@@ -49,11 +49,15 @@ public class CameraShaker : MonoBehaviour
 
         while(_ElapsedTime<duration)
         {
+            if(SlowMoController._InSlowMo == false)
+            {
+
             _Offset.x += Random.Range(-1f, 1f)*magnitude;
             _Offset.y += Random.Range(-1f, 1f)*magnitude;
             _RotationalOffset = _OriginalRot * Quaternion.Euler(1*magnitude, 1 * magnitude, 1 * magnitude); 
             transform.localPosition = _Offset;
             transform.localRotation = _RotationalOffset;
+            }
             yield return null;
 
             _ElapsedTime += Time.deltaTime;

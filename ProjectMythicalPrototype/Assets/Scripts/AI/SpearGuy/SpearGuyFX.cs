@@ -22,7 +22,7 @@ public class SpearGuyFX : MonoBehaviour
 
     private void Update()
     {
-        if(Vector3.Distance(transform.position, _Player.transform.position)<10)
+        if(Vector3.Distance(transform.position, _Player.transform.position)<10 && Vector3.Distance(transform.position, _Player.transform.position) > 2)
         {
             _CanScreenShake = true;
         }

@@ -50,5 +50,6 @@ public class CameraSwap : MonoBehaviour
             _Original = false;
         }
         _Swap = false;
+        Destroy(this, 1f);
     }
 }

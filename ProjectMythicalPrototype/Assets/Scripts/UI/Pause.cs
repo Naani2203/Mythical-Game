@@ -13,6 +13,7 @@ public class Pause : MonoBehaviour
     private EventSystem _EventSystem;
     [SerializeField]
     private GameObject _FirstSelected;
+   
 	
 	// Update is called once per frame
 	void Update ()
@@ -23,6 +24,7 @@ public class Pause : MonoBehaviour
         }
         if(_IsPaused==true)
         {
+        
             ThirdPersonController._CanMove = false;
             _EventSystem.firstSelectedGameObject = _FirstSelected;
             Time.timeScale = 0;

@@ -161,6 +161,7 @@ public class ThirdPersonController : MonoBehaviour
         {
             _Rigidbody.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
         }
+       
     }
 
     private void FixedUpdate()

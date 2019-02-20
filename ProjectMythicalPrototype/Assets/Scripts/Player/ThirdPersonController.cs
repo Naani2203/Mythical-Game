@@ -69,6 +69,8 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {
+       
+
         //-------------------------------- MOVEMENT---------------------------------------------
         _MoveInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")).normalized;
         _MoveForward = _MoveInput.x * transform.forward;

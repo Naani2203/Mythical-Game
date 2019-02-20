@@ -55,18 +55,18 @@ public class ChangeLighting : MonoBehaviour
     }
     public void EndGame()
     {
-        if (color.postExposure.value < 2.5 && _IsEndGame == false)
-        {
-            color.postExposure.value += 0.050f;
-        }
-        else if (color.postExposure.value >= 2.5)
-        {
-            _IsEndGame = true;
-        }
-        if(_IsEndGame==true)
-        {
-            SceneManager.LoadScene("EndCredit");
-        }
+        //if (color.postExposure.value < 2.5 && _IsEndGame == false)
+        //{
+        //    color.postExposure.value += 0.050f;
+        //}
+        //else if (color.postExposure.value >= 2.5)
+        //{
+        //    _IsEndGame = true;
+        //}
+        //if(_IsEndGame==true)
+        //{
+        //    SceneManager.LoadScene("EndCredit");
+        //}
     }
 
 }

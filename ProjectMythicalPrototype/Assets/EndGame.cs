@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class EndGame : MonoBehaviour
 {
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.CompareTag("Player")&&collision.collider.GetType()==typeof (CapsuleCollider))
+        if(collision.gameObject.CompareTag("Player"))
         {
         SceneManager.LoadScene("EndCredit");
 

@@ -222,7 +222,7 @@ public class ThirdPersonController : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             _Health.Damage(5);
-            _Rigidbody.AddForce(transform.forward * -1000f);
+            _Rigidbody.AddForce(transform.forward * -3000f);
             _Anim.SetTrigger("IsHurt");
         }
 

@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 134369561}
   - component: {fileID: 134369560}
   - component: {fileID: 134369563}
+  - component: {fileID: 134369564}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -248,6 +249,17 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 1
       enableBigTilePrepass: 1
       isFptlEnabled: 1
+--- !u!114 &134369564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 134369559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76087494142f2a44eafd7426497858a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &896525378
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +335,7 @@ GameObject:
   - component: {fileID: 922776348}
   - component: {fileID: 922776347}
   - component: {fileID: 922776352}
+  - component: {fileID: 922776353}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -520,6 +533,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &922776353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 922776346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f73b49b33165363458f0f4597d050cd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1245153651
 GameObject:
   m_ObjectHideFlags: 0
